@@ -27,7 +27,6 @@
                                     <span class="d-lg-none d-md-block">Stats</span>
                                 </p>
                             </a>
-
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

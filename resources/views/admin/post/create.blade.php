@@ -72,13 +72,16 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="bmd-label-floating" id="category">Catégory</label>
-                                            <select name="category_id" id="category_id" class="form-control" value="{{old('category_id')}}">
-
+                                            <label class="bmd-label-floating" id="category_id">Catégorie</label>
+                                            <select name="category_id" id="category_id" class="form-control">
+                                                @foreach($categories as $category)
+                                                    <option value="{{ $category->id }}">{{ $category->name  }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
                                 </div>
+
                                 <br>
                                 <div class="row">
                                     <div class="col-md-12">

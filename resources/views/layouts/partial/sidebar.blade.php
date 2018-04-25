@@ -31,7 +31,7 @@ Tip 2: you can also add an image using data-image tag
             </li>
 
             <li class="nav-item {{ Request::is('admin/post*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('post.create') }}">
+                <a class="nav-link" href="{{ route('post.index') }}">
                     <i class="material-icons">library_books</i>
                     <p>Articles</p>
                 </a>

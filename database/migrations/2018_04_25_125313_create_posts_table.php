@@ -23,6 +23,8 @@ class CreatePostsTable extends Migration
             $table->string('url');
 
             $table->foreign('category_id')->references('id')->on('categories');
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }
