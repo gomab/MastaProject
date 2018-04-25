@@ -13,9 +13,11 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
+
                     <!-- Validation errors -->
                     @include('layouts.partial.msg')
                     <!-- End validation errors -->
+
                     <div class="card">
                         <div class="card-header card-header-primary">
                             <h4 class="card-title ">Rédiger un article</h4>
@@ -29,24 +31,16 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Titre</label>
-                                            <input type="text" name="title" class="form-control">
+                                            <input type="text" name="title" class="form-control" value="{{old('title')}}">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Slug</label>
-                                            <input type="text" class="form-control" name="slug" disabled>
+                                            <input type="text" class="form-control" name="slug" value="{{old('slug')}}" disabled>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="bmd-label-floating" id="category">Catégory</label>
-                                            <select name="category" id="category" class="form-control">
-
-                                            </select>
-                                        </div>
-                                    </div>
                                 </div>
 
                                 <div class="row">
@@ -55,7 +49,7 @@
                                             <label>Contenu</label>
                                             <div class="form-group">
                                                 <label class="bmd-label-floating"> Rédiger l'article</label>
-                                                <textarea class="form-control" rows="5" name="content"></textarea>
+                                                <textarea class="form-control" rows="5" name="content">{{old('content')}}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -64,17 +58,28 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label class="bmd-label-floating">Image</label><br>
-                                        <input class="form-control" type="file" name="featured">
+                                        <input class="form-control" type="file" name="featured" value="{{old("featured")}}">
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Url</label>
-                                            <input type="text" name="url" class="form-control">
+                                            <input type="text" name="url" class="form-control" value="{{old('url')}}">
                                         </div>
                                     </div>
                                 </div>
 
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating" id="category">Catégory</label>
+                                            <select name="category_id" id="category_id" class="form-control" value="{{old('category_id')}}">
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label class="bmd-label-floating">Tags</label><br>
@@ -106,6 +111,8 @@
                                         </div>
                                     </div>
                                 </div>
+
+
 
                                 <br><br>
 

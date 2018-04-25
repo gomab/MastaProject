@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
@@ -13,7 +14,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return view('admin.category.index', compact('categories'));
     }
 
     /**
@@ -23,7 +25,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.category.create');
     }
 
     /**
@@ -34,7 +36,18 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required'
+        ], [
+            'name.required' => 'Veuillez saisir le nom  de la category'
+        ]);
+
+        $category = Category::create([
+            'name'  => $request->input('name'),
+            'slug'  => str_slug($request->input('name'))
+        ]);
+
+        return redirect()->route('category.index')->with('successMsg', 'Catégorie ajoutée avec success');
     }
 
     /**

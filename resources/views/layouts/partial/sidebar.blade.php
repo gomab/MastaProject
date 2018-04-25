@@ -24,7 +24,7 @@ Tip 2: you can also add an image using data-image tag
                 </a>
             </li>
             <li class="nav-item {{ Request::is('admin/category*') ? 'active' : '' }}">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('category.index') }}">
                     <i class="material-icons">content_paste</i>
                     <p>Categories</p>
                 </a>

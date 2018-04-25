@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -34,7 +35,26 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title'    => 'required',
+            'featured' => 'required|image',
+            'content'  => 'required',
+            'category_id' => 'required',
+            'tags'      => 'required'
+
+        ], [
+            'title.required' => 'veuillez remplir le champ Titre',
+            'content.required' => 'veuillez remplir le champ contenu',
+            'featured.required' => 'veuillez remplir le champ image',
+            'category_id.required' => 'veuillez remplir le champ categorie',
+            'tags.required' => 'veuillez remplir le champ tag',
+        ]);
+
+        //Session::flash('success', 'Post created successfully');
+        Toastr::success('Post crée.', 'Title', ["positionClass" => "toast-top-right"]);
+
         dump($request->all());
+
     }
 
     /**
