@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.myApp')
 
-@section('title', 'Category')
+@section('title', 'Brazza hip-hop|Category')
 
 @push('css')
 
@@ -18,7 +18,7 @@
                     <!-- End validation errors -->
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title ">Edit Category</h4>
+                            <h4 class="card-title ">Mise à jour categorie : <strong>{{ $category->name }}</strong></h4>
                             <!--<p class="card-category"> Here is a subtitle for this table</p>-->
                         </div>
                         <div class="card-body">
@@ -41,9 +41,13 @@
                                 </div>
                                 <br><br>
 
-                                <a class="btn btn-danger" href="{{ route('category.index') }}">Back</a>
+                                <div class="text-center">
+                                    <a class="btn btn-danger btn-sm" href="{{route('category.index')}}"> <i class="material-icons">keyboard_backspace
+                                        </i></a>
 
-                                <button type="submit" class="btn btn-primary">Save</button>
+                                    <button type="submit" class="btn btn-primary btn-sm"> <i class="material-icons">save</i></button>
+                                </div>
+
 
                             </form>
                         </div>
