@@ -68,13 +68,34 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#pablo">
-                        <i class="material-icons">info</i>
+                    <!-- Button trigger modal -->
+
+                    <a class="nav-link" href="#"><i class="material-icons" data-toggle="modal" data-target="#infoModal">info</i>
                         <p>
-                            <span class="d-lg-none d-md-block">Account</span>
+                            <span class="d-lg-none d-md-block">info</span>
                         </p>
                     </a>
 
+                    <!-- Modal -->
+                    <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    ...
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </li>
 
             </ul>
