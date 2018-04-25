@@ -20,3 +20,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin/dashboard', 'HomeController@index')->name('dashboard');
+
+Route::group([
+    'prefix' => 'admin',
+
+], function (){
+    Route::resource('/post', 'PostsController');
+});

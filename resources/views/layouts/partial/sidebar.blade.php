@@ -5,8 +5,8 @@ Tip 1: You can change the color of the sidebar using: data-color="purple | azure
 Tip 2: you can also add an image using data-image tag
 -->
     <div class="logo">
-        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-            Creative Tim
+        <a href="#" class="simple-text logo-normal">
+            BRAZZA HIP-HOP
         </a>
     </div>
     <div class="sidebar-wrapper">
@@ -20,7 +20,7 @@ Tip 2: you can also add an image using data-image tag
             <li class="nav-item {{ Request::is('admin/slider*') ? 'active' : '' }}">
                 <a class="nav-link" href="#">
                     <i class="material-icons">slideshow</i>
-                    <p>Slider</p>
+                    <p>Publicités</p>
                 </a>
             </li>
             <li class="nav-item {{ Request::is('admin/category*') ? 'active' : '' }}">
@@ -30,10 +30,10 @@ Tip 2: you can also add an image using data-image tag
                 </a>
             </li>
 
-            <li class="nav-item {{ Request::is('admin/item*') ? 'active' : '' }}">
-                <a class="nav-link" href="#">
+            <li class="nav-item {{ Request::is('admin/post*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('post.create') }}">
                     <i class="material-icons">library_books</i>
-                    <p>Item</p>
+                    <p>Articles</p>
                 </a>
             </li>
 
