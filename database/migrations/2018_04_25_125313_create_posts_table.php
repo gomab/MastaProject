@@ -21,6 +21,7 @@ class CreatePostsTable extends Migration
             $table->text('content');
             $table->string('featured');
             $table->string('url');
+            $table->boolean('published')->default(0);
 
             $table->foreign('category_id')->references('id')->on('categories');
 
