@@ -22,7 +22,7 @@
                             <!--<p class="card-category"> Here is a subtitle for this table</p>-->
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('profile.update', $user->id) }}">
+                            <form method="POST" action="{{ route('profile.update', $user->id) }}" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
