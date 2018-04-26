@@ -114,7 +114,7 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -137,6 +137,52 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+
+        $post->delete();
+
+        Toastr::success('Larticle a été placé dans la corbeille.', 'Brazza HipHop', ["positionClass" => "toast-top-right"]);
+
+        return redirect()->back();
+    }
+
+    /**
+     * View post trashed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function trashed(){
+        $posts = Post::onlyTrashed()->get();
+
+        //Toastr::success('Article restauré.', 'Brazza HipHop', ["positionClass" => "toast-top-right"]);
+
+        return view('admin.post.trashed', compact('posts'));
+    }
+
+    /**
+     * Permanently deleting post
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function kill($id){
+        $post = Post::withTrashed()->where('id', $id)->first();
+        $post->forceDelete();
+
+        Toastr::success('Article supprimé avec succes', 'Brazza HipHop', ["positionClass" => "toast-top-right"]);
+
+        return redirect()->back();
+    }
+
+    /**
+     * Restoring trashed post
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function restore($id){
+        $post = Post::withTrashed()->where('id', $id)->first();
+        $post->restore();
+
+        Toastr::success('Article restoré avec succes', 'Brazza HipHop', ["positionClass" => "toast-top-right"]);
+
+        return redirect()->route('post.index');
     }
 }

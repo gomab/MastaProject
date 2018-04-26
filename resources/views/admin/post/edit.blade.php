@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.myApp')
 
-@section('title', 'Item')
+@section('title', 'Post')
 
 @push('css')
 
@@ -13,55 +13,43 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
+
                     <!-- Validation errors -->
-                     @include('layouts.partial.msg')
-                    <!-- End validation errors -->
+                @include('layouts.partial.msg')
+                <!-- End validation errors -->
+
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title ">Edit Item</h4>
-                            <!--<p class="card-category"> Here is a subtitle for this table</p>-->
+                            <h4 class="card-title ">Mettre à jour un article : <strong>{{ $post->title }}</h4>
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('item.update', $item->id) }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('post.store') }}" enctype="multipart/form-data">
                                 @csrf
-                                @method('PUT')
 
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="bmd-label-floating" id="category">Catégory</label>
-                                            <select class="form-control" name="category" id="category">
-                                                @foreach($categories as $category)
-                                                    <option {{ $category->id == $item->category->id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name  }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="bmd-label-floating">Name</label>
-                                            <input type="text" name="name" class="form-control" value="{{ $item->name }}">
-                                        </div>
-                                    </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="bmd-label-floating">Price</label>
-                                            <input type="number" name="price" class="form-control" value="{{ $item->price }}">
+                                            <label class="bmd-label-floating">Titre</label>
+                                            <input type="text" name="title" class="form-control" value="{{old('title')}}">
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Slug</label>
+                                            <input type="text" class="form-control" name="slug" value="{{old('slug')}}" disabled>
+                                        </div>
+                                    </div>
+
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Description</label>
+                                            <label>Contenu</label>
                                             <div class="form-group">
-                                                <label class="bmd-label-floating"> Write Item Description.</label>
-                                                <textarea class="form-control" rows="5" name="description">{{ $item->description }}</textarea>
+                                                <label class="bmd-label-floating"> Rédiger l'article</label>
+                                                <textarea class="form-control" rows="5" name="content">{{old('content')}}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -70,13 +58,68 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label class="bmd-label-floating">Image</label><br>
-                                        <input class="form-control" type="file" name="image">
+                                        <input class="form-control" type="file" name="featured" value="{{old("featured")}}">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Url</label>
+                                            <input type="text" name="url" class="form-control" value="{{old('url')}}">
+                                        </div>
                                     </div>
                                 </div>
 
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating" id="category_id">Catégorie</label>
+                                            <select name="category_id" id="category_id" class="form-control">
+                                                @foreach($categories as $category)
+                                                    <option value="{{ $category->id }}">{{ $category->name  }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="bmd-label-floating">Tags</label><br>
+                                        <div class="form-check form-check-inline">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"> Musique
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check form-check-inline">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"> Sport
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check form-check-inline">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"> Tech
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
                                 <br><br>
 
-                                <a class="btn btn-danger" href="{{route('item.index')}}">Back</a>
+                                <a class="btn btn-danger" href="{{route('post.index')}}">Back</a>
 
                                 <button type="submit" class="btn btn-primary">Save</button>
 

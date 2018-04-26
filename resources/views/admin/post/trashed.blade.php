@@ -1,6 +1,6 @@
 @extends('layouts.myApp')
 
-@section('title', 'Post')
+@section('title', 'Trashed')
 
 @push('css')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
@@ -20,16 +20,9 @@
 
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">Articles</h4>
+                            <h4 class="card-title">Articles | Corbeille</h4>
                             <a class="nav-link" href="{{ route('post.create') }}">
                                 <span class="btn btn-info btn-sm"><i class="material-icons">add_circle</i></span>
-                                <p>
-                                    <span class="d-lg-none d-md-block">Stats</span>
-                                </p>
-                            </a>
-
-                            <a class="nav-link" href="{{ route('post.trashed') }}">
-                                <span class="btn btn-info btn-sm"><i class="material-icons">delete_sweep</i></span>
                                 <p>
                                     <span class="d-lg-none d-md-block">Stats</span>
                                 </p>
@@ -82,13 +75,13 @@
 
                                             <td><a href="#">{{ substr($post->content, 0, 30) }}...</a></td>
 
-                                            <td>{{ $post->created_at }}</td>
+                                            <td>{{ $post->deleted_at }}</td>
 
                                             <td><a class="btn btn-info btn-sm"
-                                                   href="{{ route('post.edit', $post->id) }}"><i class="material-icons">mode_edit</i></a>
+                                                   href="{{ route('post.restore', $post->id) }}"><i class="material-icons">restore</i></a>
 
                                                 <form id="delete-form-{{ $post->id }}"
-                                                      action="{{ route('post.destroy', $post->id) }}"
+                                                      action="{{ route('post.kill', $post->id) }}"
                                                       style="display: none;" method="post">
                                                     @csrf
                                                     @method('DELETE')
@@ -101,7 +94,7 @@
                                                                 event.preventDefault();
                                                                 }
                                                                 ">
-                                                    <i class="material-icons">delete_sweep </i>
+                                                    <i class="material-icons">delete</i>
                                                 </button>
                                             </td>
                                         </tr>

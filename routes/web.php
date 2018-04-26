@@ -26,6 +26,35 @@ Route::group([
     'middleware' => 'auth'
 
 ], function (){
+    /**
+     * View Trashed post
+     */
+    Route::get('/post/trashed', 'PostsController@trashed')->name('post.trashed');
+
+    /**
+     * Permanently deleting post
+     */
+    Route::get('/post/kill/{id}', 'PostsController@kill')->name('post.kill');
+
+
+    /**
+     * Restoring trashed post
+     */
+    Route::get('/post/restore/{id}', 'PostsController@restore')->name('post.restore');
+
+    /**
+     * Posts route
+     */
     Route::resource('/post', 'PostsController');
+
+    /**
+     * Categories route
+     */
     Route::resource('/category', 'CategoriesController');
+
+
+
+
+
+
 });
