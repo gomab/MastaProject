@@ -28,4 +28,12 @@ class Post extends Model
     public function category(){
         return $this->belongsTo('App\Category');
     }
+
+    /**
+     * Relationship post - tags : manyToMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function tags(){
+        return $this->belongsToMany('App\Tag');
+    }
 }

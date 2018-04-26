@@ -62,44 +62,49 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($posts as $key=>$post)
-                                        <tr>
-                                            <td>{{ $key + 1 }}</td>
-                                            <td><img class="img-responsive" width="90px" height="50px"
-                                                     src="{{ asset('uploads/post/'.$post->featured) }}"
-                                                     alt="{{ $post->featured }}">
-                                            </td>
-                                            <td>{{ $post->title}}</td>
+                                        @if($posts->count() > 0 )
+                                            @foreach($posts as $key=>$post)
+                                                <tr>
+                                                    <td>{{ $key + 1 }}</td>
+                                                    <td><img class="img-responsive" width="90px" height="50px"
+                                                             src="{{ asset('uploads/post/'.$post->featured) }}"
+                                                             alt="{{ $post->featured }}">
+                                                    </td>
+                                                    <td>{{ $post->title}}</td>
 
-                                            <td>{{ $post->category->name }}</td>
+                                                    <td>{{ $post->category->name }}</td>
 
-                                            <td><a href="#">{{ substr($post->content, 0, 30) }}...</a></td>
+                                                    <td><a href="#">{{ substr($post->content, 0, 30) }}...</a></td>
 
-                                            <td>{{ $post->deleted_at }}</td>
+                                                    <td>{{ $post->deleted_at }}</td>
 
-                                            <td><a class="btn btn-info btn-sm"
-                                                   href="{{ route('post.restore', $post->id) }}"><i class="material-icons">restore</i></a>
+                                                    <td><a class="btn btn-info btn-sm"
+                                                           href="{{ route('post.restore', $post->id) }}"><i class="material-icons">restore</i></a>
 
-                                                <form id="delete-form-{{ $post->id }}"
-                                                      action="{{ route('post.kill', $post->id) }}"
-                                                      style="display: none;" method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                </form>
-                                                <button class="btn btn-danger btn-sm" type="button"
-                                                        onclick="if(confirm('Confirmation suppression ?')){
-                                                                event.preventDefault();
-                                                                document.getElementById('delete-form-{{ $post->id }}').submit();
-                                                                }else {
-                                                                event.preventDefault();
-                                                                }
-                                                                ">
-                                                    <i class="material-icons">delete</i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                                        <form id="delete-form-{{ $post->id }}"
+                                                              action="{{ route('post.kill', $post->id) }}"
+                                                              style="display: none;" method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
+                                                        <button class="btn btn-danger btn-sm" type="button"
+                                                                onclick="if(confirm('Confirmation suppression ?')){
+                                                                        event.preventDefault();
+                                                                        document.getElementById('delete-form-{{ $post->id }}').submit();
+                                                                        }else {
+                                                                        event.preventDefault();
+                                                                        }
+                                                                        ">
+                                                            <i class="material-icons">delete_forever</i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
 
+                                        @else
+                                            <th colspan="7" class="text-center">
+                                                <i class="material-icons">hourglass_empty</i><br>Corbeille vide</th>
+                                        @endif
                                     </tbody>
                                 </table>
                             </div>
