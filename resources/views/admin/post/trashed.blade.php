@@ -103,7 +103,8 @@
 
                                         @else
                                             <th colspan="7" class="text-center">
-                                                <i class="material-icons">hourglass_empty</i><br>Corbeille vide</th>
+                                                <i class="material-icons">hourglass_empty</i><br>Corbeille vide
+                                            </th>
                                         @endif
                                     </tbody>
                                 </table>

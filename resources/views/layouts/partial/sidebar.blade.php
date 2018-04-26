@@ -30,7 +30,7 @@ Tip 2: you can also add an image using data-image tag
                 </a>
             </li>
 
-            <li>
+            <li class="nav-item {{ Request::is('admin/tag*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('tag.index') }}">
                     <i class="material-icons">turned_in_not</i>
                     <p>TAGS</p>
@@ -44,44 +44,14 @@ Tip 2: you can also add an image using data-image tag
                 </a>
             </li>
 
-            <li class="nav-item {{ Request::is('admin/reservation*') ? 'active' : '' }}">
-                <a class="nav-link" href="#">
-                    <i class="material-icons">chrome_reader_mode</i>
-                    <p>Reservations</p>
+            <li class="nav-item {{ Request::is('admin/user*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('user.index') }}">
+                    <i class="material-icons">group</i>
+                    <p>UTILISATEURS</p>
                 </a>
             </li>
 
-            <li class="nav-item {{ Request::is('admin/contact*') ? 'active' : '' }}">
-                <a class="nav-link" href="#">
-                    <i class="material-icons">message</i>
-                    <p>Contact Messages</p>
-                </a>
-            </li>
 
-            <li class="nav-item ">
-                <a class="nav-link" href="../examples/icons.html">
-                    <i class="material-icons">bubble_chart</i>
-                    <p>Icons</p>
-                </a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="../examples/maps.html">
-                    <i class="material-icons">location_ons</i>
-                    <p>Maps</p>
-                </a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="../examples/notifications.html">
-                    <i class="material-icons">notifications</i>
-                    <p>Notifications</p>
-                </a>
-            </li>
-            <li class="nav-item active-pro">
-                <a class="nav-link" href="../examples/upgrade.html">
-                    <i class="material-icons">unarchive</i>
-                    <p>Upgrade to PRO</p>
-                </a>
-            </li>
         </ul>
     </div>
 </div>

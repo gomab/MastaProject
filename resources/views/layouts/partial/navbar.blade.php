@@ -51,7 +51,8 @@
                 <li>
                     <div class="dropdown show">
                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="material-icons">person</i>
+                            <!--<i class="material-icons">person</i>-->
+                            <img src="{{ asset(Auth::user()->profile->avatar) }}" alt="{{ Auth::user()->name}}" width="30px" height="30px" style="border-radius: 50%;">
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
