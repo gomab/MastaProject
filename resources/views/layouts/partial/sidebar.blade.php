@@ -20,20 +20,27 @@ Tip 2: you can also add an image using data-image tag
             <li class="nav-item {{ Request::is('admin/slider*') ? 'active' : '' }}">
                 <a class="nav-link" href="#">
                     <i class="material-icons">slideshow</i>
-                    <p>Publicités</p>
+                    <p>PUBLICITES</p>
                 </a>
             </li>
             <li class="nav-item {{ Request::is('admin/category*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('category.index') }}">
                     <i class="material-icons">content_paste</i>
-                    <p>Categories</p>
+                    <p>CATEGORIES</p>
+                </a>
+            </li>
+
+            <li>
+                <a class="nav-link" href="{{ route('tag.index') }}">
+                    <i class="material-icons">turned_in_not</i>
+                    <p>TAGS</p>
                 </a>
             </li>
 
             <li class="nav-item {{ Request::is('admin/post*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('post.index') }}">
                     <i class="material-icons">library_books</i>
-                    <p>Articles</p>
+                    <p>ARTICLES</p>
                 </a>
             </li>
 

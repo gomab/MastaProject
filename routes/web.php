@@ -52,6 +52,11 @@ Route::group([
      */
     Route::resource('/category', 'CategoriesController');
 
+    /**
+     * Tags route
+     */
+    Route::resource('/tag', 'TagsController');
+
 
 
 
