@@ -62,6 +62,11 @@ Route::group([
      */
     Route::resource('/user', 'UsersController');
 
+    /**
+     * Profiles route
+     */
+    Route::resource('/profile', 'ProfilesController');
+
 
     Route::get('/user/admin/{id}', [
         'uses' => 'UsersController@admin',

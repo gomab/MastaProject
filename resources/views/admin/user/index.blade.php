@@ -27,6 +27,13 @@
                                     <span class="d-lg-none d-md-block">Stats</span>
                                 </p>
                             </a>
+
+                            <a class="nav-link" href="{{ route('profile.index') }}">
+                                <span class="btn btn-info btn-sm"><i class="material-icons">contacts</i></span>
+                                <p>
+                                    <span class="d-lg-none d-md-block">Stats</span>
+                                </p>
+                            </a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
