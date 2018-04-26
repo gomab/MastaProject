@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Post;
+use App\Tag;
 use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -31,15 +32,16 @@ class PostsController extends Controller
     public function create()
     {
         $categories = Category::all();
+        $tags       = Tag::all();
 
-        if($categories->count() == 0 ){
-            Toastr::info('Impossible de creer un article sans catégorie.', 'Désolé !', ["positionClass" => "toast-top-right"]);
+        if($categories->count() == 0 || $tags->count() == 0 ){
+            Toastr::info('Impossible de creer un article sans catégorie ou tag.', 'Désolé !', ["positionClass" => "toast-top-right"]);
             //Session::flash('info', 'You must have some categories before attempting to create a post.');
 
             return redirect()->back();
         }
 
-        return view('admin.post.create', compact('categories'));
+        return view('admin.post.create', compact('categories', 'tags'));
     }
 
     /**
@@ -51,18 +53,18 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title'    => 'required',
-            'featured' => 'required|image',
-            'content'  => 'required',
+            'title'       => 'required',
+            'featured'    => 'required|image',
+            'content'     => 'required',
             'category_id' => 'required',
-           // 'tags'      => 'required'
+            'tag'         => 'required'
 
         ], [
-            'title.required' => 'veuillez remplir le champ Titre',
-            'content.required' => 'veuillez remplir le champ contenu',
-            'featured.required' => 'veuillez remplir le champ image',
+            'title.required'       => 'veuillez remplir le champ Titre',
+            'content.required'     => 'veuillez remplir le champ contenu',
+            'featured.required'    => 'veuillez remplir le champ image',
             'category_id.required' => 'veuillez remplir le champ categorie',
-            //'tags.required' => 'veuillez remplir le champ tag',
+            'tag.required'         => 'veuillez remplir le champ tag',
         ]);
 
         //Upload img
@@ -85,11 +87,14 @@ class PostsController extends Controller
         $post->category_id  = $request->category_id;
         $post->title        = $request->title;
         $post->slug         = str_slug($request->title);
-       // $post->tags         = $request->tags;
+       // $post->tag          = $request->tag;
         $post->content      = $request->input('content');
         $post->url          = $request->url;
         $post->featured     = $imagename;
         $post->save();
+
+        //Lier le post aux tags
+        $post->tags()->attach($request->tags);
 
         return redirect()->route('post.index')->with('successMsg','Item ajouté avec succes');
     }
@@ -116,8 +121,9 @@ class PostsController extends Controller
     {
         $post       = Post::find($id);
         $categories = Category::all();
+        $tags       = Tag::all();
 
-        return view('admin.post.edit', compact('post', 'categories'));
+        return view('admin.post.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -172,6 +178,9 @@ class PostsController extends Controller
         $post->featured     = $imagename;
         $post->save();
 
+
+        //Update Tags
+        $post->tags()->sync($request->tags);
 
         Toastr::success('Article MAJ.', 'Brazza HipHop', ["positionClass" => "toast-top-right"]);
         return redirect()->route('post.index')->with('successMsg','Article ajouté avec succes');

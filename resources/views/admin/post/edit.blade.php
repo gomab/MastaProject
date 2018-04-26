@@ -87,32 +87,23 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label class="bmd-label-floating">Tags</label><br>
-                                        <div class="form-check form-check-inline">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"> Musique
-                                                <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                </span>
-                                            </label>
-                                        </div>
-
-                                        <div class="form-check form-check-inline">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"> Sport
-                                                <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                </span>
-                                            </label>
-                                        </div>
-
-                                        <div class="form-check form-check-inline">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"> Tech
-                                                <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                </span>
-                                            </label>
-                                        </div>
+                                        @foreach($tags as $tag)
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" name="tags[]" value="{{ $tag->id }}"
+                                                           @foreach($post->tags as $t)
+                                                           @if($tag->id == $t->id)
+                                                           checked
+                                                            @endif
+                                                            @endforeach
+                                                    >
+                                                    {{ $tag->tag }}
+                                                    <span class="form-check-sign">
+                                                        <span class="check"></span>
+                                                   </span>
+                                                </label>
+                                            </div>
+                                        @endforeach
                                     </div>
                                 </div>
 
