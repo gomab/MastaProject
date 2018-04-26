@@ -119,10 +119,12 @@
 
                                 <br><br>
 
-                                <a class="btn btn-danger" href="{{route('post.index')}}">Back</a>
+                                <div class="text-center">
+                                    <a class="btn btn-danger btn-sm" href="{{route('category.index')}}"> <i class="material-icons">keyboard_backspace
+                                        </i></a>
 
-                                <button type="submit" class="btn btn-primary">Save</button>
-
+                                    <button type="submit" class="btn btn-primary btn-sm"> <i class="material-icons">save</i></button>
+                                </div>
                             </form>
                         </div>
                     </div>

@@ -114,7 +114,10 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
+        $post       = Post::find($id);
+        $categories = Category::all();
 
+        return view('admin.post.edit', compact('post', 'categories'));
     }
 
     /**
@@ -126,7 +129,52 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'title'    => 'required',
+           // 'featured' => 'required|image',
+            'content'  => 'required',
+            'category_id' => 'required',
+            // 'tags'      => 'required'
+
+        ], [
+            'title.required' => 'veuillez remplir le champ Titre',
+            'content.required' => 'veuillez remplir le champ contenu',
+           // 'featured.required' => 'veuillez remplir le champ image',
+            'category_id.required' => 'veuillez remplir le champ categorie',
+            //'tags.required' => 'veuillez remplir le champ tag',
+        ]);
+
+        $categories = Category::all();
+        $post = Post::find($id);
+
+        //Upload img
+        $featured = $request->file('featured');
+        $slug = str_slug($request->title);
+        if(isset($featured)){
+            $currentDate = Carbon::now()->toDateString();
+            $imagename = $slug.'-'.$currentDate.'-'. uniqid() .'.'. $featured->getClientOriginalExtension();
+
+            if(!file_exists('uploads/post')){
+                mkdir('uploads/post', 0777, true);
+            }
+            $featured->move('uploads/post',$imagename);
+        }else{
+            $imagename = $post->featured;
+        }
+
+        //Create post
+        $post->category_id  = $request->category_id;
+        $post->title        = $request->title;
+        $post->slug         = str_slug($request->title);
+        // $post->tags         = $request->tags;
+        $post->content      = $request->input('content');
+        $post->url          = $request->url;
+        $post->featured     = $imagename;
+        $post->save();
+
+
+        Toastr::success('Article MAJ.', 'Brazza HipHop', ["positionClass" => "toast-top-right"]);
+        return redirect()->route('post.index')->with('successMsg','Article ajouté avec succes');
     }
 
     /**
