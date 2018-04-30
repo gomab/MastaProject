@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Brian2694\Toastr\Facades\Toastr;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
@@ -38,17 +39,44 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required'
-        ], [
-            'name.required' => 'Veuillez saisir le nom  de la category'
+            'name'  => 'required',
+            'image' => 'required'
+         ], [
+            'name.required' => 'Veuillez saisir le nom  de la catégorie',
+            'image.required' => 'Veuillez remplir limage'
         ]);
 
-        $category = Category::create([
+        //Upload img
+        $image = $request->file('image');
+        $slug  = str_slug($request->name);
+        if(isset($image)){
+            $currentDate = Carbon::now()->toDateString();
+            $imagename = $slug.'-'.$currentDate.'-'. uniqid() .'.'. $image->getClientOriginalExtension();
+
+            if(!file_exists('uploads/category')){
+                mkdir('uploads/category', 0777, true);
+            }
+            $image->move('uploads/category',$imagename);
+        }else{
+            $imagename = 'default.png';
+        }
+
+       /* $category = Category::create([
             'name'  => $request->input('name'),
+            'image' => $imagename,
             'slug'  => str_slug($request->input('name'))
-        ]);
+        ]);*/
 
-        return redirect()->route('category.index')->with('successMsg', 'Catégorie ajoutée avec success');
+        //Create Category
+        $category        = new Category();
+        $category->name  = $request->name;
+        $category->slug  = str_slug($request->name);
+        $category->image = $imagename;
+        $category->save();
+
+        Toastr::success('Catégorie ajouté', 'Brazza Hip-Hop', ["positionClass" => "toast-top-right"]);
+
+        return redirect()->route('category.index');
     }
 
     /**
@@ -92,11 +120,30 @@ class CategoriesController extends Controller
 
         $category = Category::find($id);
 
-        $category->name = $request->name;
-        $category->slug = str_slug($request->name);
+        //Upload img
+        $image = $request->file('image');
+        $slug = str_slug($request->name);
+        if(isset($image)){
+            $currentDate = Carbon::now()->toDateString();
+            $imagename = $slug.'-'.$currentDate.'-'. uniqid() .'.'. $image->getClientOriginalExtension();
+
+            if(!file_exists('uploads/category')){
+                mkdir('uploads/category', 0777, true);
+            }
+            $featured->move('uploads/category',$imagename);
+        }else{
+            $imagename = $category->image;
+        }
+
+        $category->name  = $request->name;
+        $category->image = $imagename;
+        $category->slug  = str_slug($request->name);
         $category->save();
 
-        return redirect()->route('category.index')->with('successMsg', 'Catégorie MAJ avec success');
+        Toastr::success('Catégorie Mise à Jour', 'Brazza Hip-Hop', ["positionClass" => "toast-top-right"]);
+
+        //return redirect()->route('category.index')->with('successMsg', 'Catégorie MAJ avec success');
+        return redirect()->route('category.index');
 
     }
 
@@ -118,7 +165,7 @@ class CategoriesController extends Controller
         $category->delete();
 
         //Session::flash('success', 'You successfuly deleted the category.');
-        Toastr::success('Catégorie supprimé ', 'Title', ["positionClass" => "toast-top-right"]);
+        Toastr::success('Catégorie Supprimée ', 'Title', ["positionClass" => "toast-top-right"]);
         return redirect()->route('category.index');
         //return redirect()->route('category.index')->with('successMsg', 'Catégorie supprimée avec success');
     }

@@ -22,7 +22,7 @@
                             <!--<p class="card-category"> Here is a subtitle for this table</p>-->
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('category.update', $category->id) }}">
+                            <form method="POST" action="{{ route('category.update', $category->id) }}" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
@@ -39,6 +39,14 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="bmd-label-floating">Image</label><br>
+                                        <input class="form-control" type="file" name="image" value="{{ $category->image }}">
+                                    </div>
+                                </div>
+
                                 <br><br>
 
                                 <div class="text-center">
