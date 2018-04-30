@@ -17,10 +17,10 @@
                     @include('layouts.partial.msg')
                     <!-- End validation errors -->
                     <div class="card">
-                        <div class="card-header card-header-danger">
+                        <div class="card-header card-header-primary">
                             <h5 class="card-title">Catégorie/Nouveau</h5>
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-secondary btn-sm"><a href="{{ route('category.index') }}"><i class="material-icons">home</i></a></button>
+                                <button type="button" class="btn btn-secondary btn-sm" title="Voir toutes les catégories"><a href="{{ route('category.index') }}"><i class="material-icons">home</i></a></button>
                             </div>
                         </div>
                         <div class="card-body">
@@ -54,10 +54,10 @@
                                 <br><br>
 
                                 <div class="text-center">
-                                    <a class="btn btn-danger btn-sm" href="{{route('category.index')}}"> <i class="material-icons">keyboard_backspace
+                                    <a class="btn btn-danger btn-sm" href="{{route('category.index')}}" title="Retour"> <i class="material-icons">keyboard_backspace
                                         </i></a>
 
-                                    <button type="submit" class="btn btn-primary btn-sm"> <i class="material-icons">save</i></button>
+                                    <button type="submit" class="btn btn-primary btn-sm" title="Enregistrer"> <i class="material-icons">save</i></button>
                                 </div>
 
                             </form>

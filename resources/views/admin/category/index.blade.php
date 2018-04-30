@@ -22,7 +22,7 @@
                         <div class="card-header card-header-danger">
                             <h5 class="card-title">Catégorie</h5>
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-secondary btn-sm"><a href="{{ route('category.create') }}" title="Nouvelle catégorie"><i class="material-icons">add_circle</i></a></button>
+                                <button type="button" class="btn btn-secondary btn-sm" title="Nouvelle catégorie"><a href="{{ route('category.create') }}"><i class="material-icons">add_circle</i></a></button>
                             </div>
                         </div>
                         <div class="card-body">
@@ -31,20 +31,20 @@
                                     <div class="table-responsive">
                                         <table id="table" class="table table-striped table-bordered" style="width:100%">
                                             <thead class=" text-primary">
-                                            <th>
-                                                ID
+                                            <th class="th-actions text-center">
+                                                Id
                                             </th>
-                                            <th>
+                                            <th class="th-actions text-center">
                                                 Image
                                             </th>
-                                            <th>
-                                                Name
+                                            <th class="th-actions text-center">
+                                                Nom
                                             </th>
-                                            <th>
+                                            <th class="th-actions text-center">
                                                 Slug
                                             </th>
 
-                                            <th>
+                                            <th class="th-actions text-center">
                                                 Action
                                             </th>
 
@@ -55,7 +55,7 @@
                                                 @foreach($categories as $key=>$category)
                                                     <tr>
                                                         <td class="td-actions text-center">{{ $key + 1 }}</td>
-                                                        <td class="td-actions text-center"><img class="img-responsive" width="90px" height="50px"
+                                                        <td class="td-actions text-center"><img class="img-responsive rounded" width="100px" height="60px"
                                                                                                 src="{{ asset('uploads/category/'.$category->image) }}"
                                                                                                 alt="{{ $category->name }}">
                                                         </td>

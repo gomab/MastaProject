@@ -50,10 +50,10 @@
                                 <br><br>
 
                                 <div class="text-center">
-                                    <a class="btn btn-danger btn-sm" href="{{route('category.index')}}"> <i class="material-icons">keyboard_backspace
+                                    <a class="btn btn-danger btn-sm" href="{{route('category.index')}}" title="Retour"> <i class="material-icons">keyboard_backspace
                                         </i></a>
 
-                                    <button type="submit" class="btn btn-primary btn-sm"> <i class="material-icons">save</i></button>
+                                    <button type="submit" class="btn btn-primary btn-sm" title="Valider"> <i class="material-icons">save</i></button>
                                 </div>
 
 

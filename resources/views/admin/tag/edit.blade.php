@@ -18,11 +18,11 @@
                     <!-- End validation errors -->
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title ">Mise à jour categorie : <strong>{{ $tag->name }}</strong></h4>
+                            <h4 class="card-title ">Mise à jour tag : <strong>{{ $tag->tag }}</strong></h4>
                             <!--<p class="card-tag"> Here is a subtitle for this table</p>-->
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('tag.update', $tag->id) }}">
+                            <form method="POST" action="{{ route('tag.update', $tag->id) }}" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
@@ -39,13 +39,20 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="bmd-label-floating">Image</label><br>
+                                        <input class="form-control" type="file" name="image" value="{{ $tag->image }}">
+                                    </div>
+                                </div>
                                 <br><br>
 
                                 <div class="text-center">
-                                    <a class="btn btn-danger btn-sm" href="{{route('tag.index')}}"> <i class="material-icons">keyboard_backspace
+                                    <a class="btn btn-danger btn-sm" href="{{route('tag.index')}}" title="Retour"> <i class="material-icons">keyboard_backspace
                                         </i></a>
 
-                                    <button type="submit" class="btn btn-primary btn-sm"> <i class="material-icons">save</i></button>
+                                    <button type="submit" class="btn btn-primary btn-sm" title="Valider"> <i class="material-icons">save</i></button>
                                 </div>
 
 

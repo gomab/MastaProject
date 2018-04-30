@@ -40,10 +40,10 @@ class CategoriesController extends Controller
     {
         $this->validate($request, [
             'name'  => 'required',
-            'image' => 'required'
+            'image' => 'required|image'
          ], [
             'name.required' => 'Veuillez saisir le nom  de la catégorie',
-            'image.required' => 'Veuillez remplir limage'
+            'image.required' => 'Veuillez remplir l image'
         ]);
 
         //Upload img

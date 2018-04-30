@@ -19,48 +19,53 @@
                     <!-- End Success Msg -->
 
                     <div class="card">
-                        <div class="card-header card-header-primary">
-                            <h4 class="card-title">All tags</h4>
-                            <a class="nav-link" href="{{ route('tag.create') }}">
-                                <span class="btn btn-info btn-sm"><i class="material-icons">add_circle</i></span>
-                                <p>
-                                    <span class="d-lg-none d-md-block">Stats</span>
-                                </p>
-                            </a>
+                        <div class="card-header card-header-danger">
+                            <h5 class="card-title">Tag</h5>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-secondary btn-sm" title="Nouveau Tag"><a href="{{ route('tag.create') }}"><i class="material-icons">add_circle</i></a></button>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table id="table" class="table table-striped table-bordered" style="width:100%">
                                     <thead class=" text-primary">
-                                    <th>
+                                    <th class="th-actions text-center">
                                         ID
                                     </th>
-                                    <th>
-                                        Name
+                                    <th class="th-actions text-center">
+                                        Image
                                     </th>
-                                    <th>
+                                    <th class="th-actions text-center">
+                                        Nom
+                                    </th>
+                                    <th class="th-actions text-center">
                                         Slug
                                     </th>
 
-                                    <th>
+                                    <th class="th-actions text-center">
                                         Action
                                     </th>
 
 
                                     </thead>
                                     <tbody>
-                                        @foreach($tags as $key=>$tag)
+                                        @if($tags->count() > 0)
+                                            @foreach($tags as $key=>$tag)
                                             <tr>
-                                                <td>{{ $key + 1 }}</td>
-                                                <td>{{ $tag->tag }}</td>
-                                                <td>{{ $tag->slug }}</td>
-                                                <td><a class="btn btn-info btn-sm" href="{{ route('tag.edit', $tag->id) }}"><i class="material-icons">mode_edit</i></a>
+                                                <td class="td-actions text-center">{{ $key + 1 }}</td>
+                                                <td class="td-actions text-center"><img class="img-responsive rounded" width="100px" height="60px"
+                                                                                        src="{{ asset('uploads/tag/'.$tag->image) }}"
+                                                                                        alt="{{ $tag->name }}">
+                                                </td>
+                                                <td class="td-actions text-center">{{ $tag->tag }}</td>
+                                                <td class="td-actions text-center">{{ $tag->slug }}</td>
+                                                <td class="td-actions text-center"><a class="btn btn-info btn-sm" title="Editer" href="{{ route('tag.edit', $tag->id) }}"><i class="material-icons">mode_edit</i></a>
 
                                                     <form id="delete-form-{{ $tag->id }}" action="{{ route('tag.destroy', $tag->id) }}" style="display: none;" method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                     </form>
-                                                    <button class="btn btn-danger btn-sm" type="button" onclick="if(confirm('Confirmation suppression ?')){
+                                                    <button class="btn btn-danger btn-sm" type="button" title="Supprmier" onclick="if(confirm('Confirmation suppression ?')){
                                                         event.preventDefault();
                                                         document.getElementById('delete-form-{{ $tag->id }}').submit();
                                                     }else {
@@ -74,7 +79,11 @@
                                             <!-- <td><a class="btn btn-danger btn-sm" href="{{ route('tag.edit', $tag->id) }}"><i class="material-icons">delete</i></a></td>-->
                                             </tr>
                                         @endforeach
-
+                                        @else
+                                            <th colspan="7" class="text-center">
+                                                <i class="material-icons">hourglass_empty</i><br>Corbeille vide
+                                            </th>
+                                        @endif
                                     </tbody>
                                 </table>
                             </div>
