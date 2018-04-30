@@ -4,6 +4,9 @@
 
 @push('css')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ asset('backend/css/switch.css') }}">
 @endpush
 
 
@@ -19,23 +22,13 @@
                 <!-- End Success Msg -->
 
                     <div class="card">
-                        <div class="card-header card-header-primary">
-                            <h4 class="card-title">Articles</h4>
-                            <a class="nav-link" href="{{ route('post.create') }}">
-                                <span class="btn btn-info btn-sm"><i class="material-icons">add_circle</i></span>
-                                <p>
-                                    <span class="d-lg-none d-md-block">Stats</span>
-                                </p>
-                            </a>
-
-                            <a class="nav-link" href="{{ route('post.trashed') }}">
-                                <span class="btn btn-info btn-sm"><i class="material-icons">delete_sweep</i></span>
-                                <p>
-                                    <span class="d-lg-none d-md-block">Stats</span>
-                                </p>
-                            </a>
-
-
+                        <div class="card-header card-header-danger">
+                            <h4 class="card-title">ARTICLES</h4>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-secondary"><a href="{{ route('post.create') }}"><i class="material-icons">add_circle</i></a></button>
+                                <button type="button" class="btn btn-secondary"><a href="{{ route('post.trashed') }}"><i class="material-icons">delete_sweep</i></a></button>
+                                <!--<button type="button" class="btn btn-secondary"><i class="material-icons">delete_sweep</i></button>-->
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -59,12 +52,15 @@
                                             Content
                                         </th>
 
-                                        <th>
+                                       <!--  <th>
                                             Date
-                                        </th>
+                                        </th>-->
 
                                         <th>
                                             Action
+                                        </th>
+                                        <th>
+                                            Etat
                                         </th>
                                     </tr>
                                     </thead>
@@ -82,7 +78,7 @@
 
                                             <td><a href="#">{{ substr($post->content, 0, 30) }}...</a></td>
 
-                                            <td>{{ $post->created_at }}</td>
+                                            <!--<td>{{ $post->updated_at->toFormattedDateString() }}</td>-->
 
                                             <td><a class="btn btn-info btn-sm"
                                                    href="{{ route('post.edit', $post->id) }}"><i class="material-icons">mode_edit</i></a>
@@ -103,7 +99,17 @@
                                                                 ">
                                                     <i class="material-icons">delete_sweep </i>
                                                 </button>
+
+                                                <!-- Rounded switch
+                                                <label class="switch">
+                                                    <input type="checkbox">
+                                                    <span class="slider round"></span>
+                                                </label>-->
+
+
                                             </td>
+
+                                            <td><input id="toggle" type="checkbox" data-toggle="toggle" data-on="Publie" data-off="NON PUBLIE" data-size="small"></td>
                                         </tr>
                                     @endforeach
 
@@ -121,6 +127,7 @@
 @push('scripts')
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <script>
         $(document).ready(function () {
             $('#table').DataTable({
@@ -129,5 +136,14 @@
                 }
             });
         });
+    </script>
+
+    <script>
+        $(function() {
+            $('#toggle').bootstrapToggle({
+                on: 'Enabled',
+                off: 'Disabled'
+            });
+        })
     </script>
 @endpush

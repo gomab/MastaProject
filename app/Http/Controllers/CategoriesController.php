@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
@@ -107,8 +108,18 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::find($id)->delete();
+        $category = Category::find($id);
 
-        return redirect()->route('category.index')->with('successMsg', 'Catégorie supprimée avec success');
+        //delete posts associed to category
+        foreach ($category->posts as $post){
+            $post->forceDelete();
+        }
+
+        $category->delete();
+
+        //Session::flash('success', 'You successfuly deleted the category.');
+        Toastr::success('Catégorie supprimé ', 'Title', ["positionClass" => "toast-top-right"]);
+        return redirect()->route('category.index');
+        //return redirect()->route('category.index')->with('successMsg', 'Catégorie supprimée avec success');
     }
 }

@@ -18,7 +18,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('created_at', 'desc')->get();
 
         return view('admin.post.index', compact('posts'));
 
@@ -176,6 +176,7 @@ class PostsController extends Controller
         $post->content      = $request->input('content');
         $post->url          = $request->url;
         $post->featured     = $imagename;
+        $post->updated_at   = now();
         $post->save();
 
 

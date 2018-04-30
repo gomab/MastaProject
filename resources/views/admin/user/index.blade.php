@@ -97,8 +97,6 @@
                                                         @endif
                                                     </td>
 
-
-                                                <!-- <td><a class="btn btn-danger btn-sm" href="{{ route('user.edit', $user->id) }}"><i class="material-icons">delete</i></a></td>-->
                                                 </tr>
                                             @endforeach
 

@@ -21,7 +21,10 @@
     <link href="{{ asset('backend/assets-for-demo/demo.css') }}" rel="stylesheet" />
     <!-- iframe removal -->
 
+
+
     @stack('css')
+    @yield('styles')
 </head>
 
 <body>
@@ -89,7 +92,7 @@
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
     @stack('scripts')
 
-
+    @yield('scripts')
     {!! Toastr::message() !!}
 </body>
 

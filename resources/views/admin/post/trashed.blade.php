@@ -20,13 +20,13 @@
 
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">Articles | Corbeille</h4>
-                            <a class="nav-link" href="{{ route('post.create') }}">
-                                <span class="btn btn-info btn-sm"><i class="material-icons">add_circle</i></span>
-                                <p>
-                                    <span class="d-lg-none d-md-block">Stats</span>
-                                </p>
-                            </a>
+                            <h4 class="card-title">ARTICLES/CORBEILLE</h4>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-secondary"><a href="{{ route('post.index') }}"><i class="material-icons">home</i></a></button>
+                                <button type="button" class="btn btn-secondary"><a href="{{ route('post.create') }}"><i class="material-icons">add_circle</i></a></button>
+
+                                <!--<button type="button" class="btn btn-secondary"><i class="material-icons">delete_sweep</i></button>-->
+                            </div>
 
 
                         </div>

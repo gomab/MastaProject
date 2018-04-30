@@ -3,7 +3,6 @@
 @section('title', 'Brazza-HipHop')
 
 @push('css')
-
 @endpush
 
 @section('content')

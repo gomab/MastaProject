@@ -3,7 +3,7 @@
 @section('title', 'Post')
 
 @push('css')
-
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 @endpush
 
 
@@ -47,7 +47,6 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Contenu</label>
                                             <div class="form-group">
                                                 <label class="bmd-label-floating"> Rédiger l'article</label>
                                                 <textarea class="form-control" rows="10" name="content">{{$post->content}}</textarea>
@@ -63,11 +62,10 @@
                                     </div>
 
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="bmd-label-floating">Url</label>
-                                            <input type="text" name="url" class="form-control" value="{{$post->url}}">
-                                        </div>
+                                        <label class="bmd-label-floating">Etat</label><br>
+                                        <input id="toggle" type="checkbox" data-toggle="toggle" data-on="Publie" data-off="NON PUBLIE" data-size="small">
                                     </div>
+
                                 </div>
 
                                 <div class="row">
@@ -81,6 +79,16 @@
                                             </select>
                                         </div>
                                     </div>
+
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Url</label>
+                                            <input type="text" name="url" class="form-control" value="{{$post->url}}">
+                                        </div>
+                                    </div>
+
+
                                 </div>
 
                                 <br>
@@ -128,5 +136,5 @@
 @endsection
 
 @push('scripts')
-
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 @endpush
