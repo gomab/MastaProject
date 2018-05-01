@@ -36,6 +36,25 @@ Route::group([
     Route::get('/post/trashed', 'PostsController@trashed')->name('post.trashed');
 
     /**
+     * View Published post
+
+    Route::get('/post/published', 'PostsController@published')->name('post.published');
+     */
+
+    /**
+     * View No published posts
+     */
+
+    Route::get('/post/no-published', 'PostsController@indexNoPub')->name('post.no-published');
+
+    /**
+     * View published posts
+     */
+
+    Route::get('/post/published', 'PostsController@indexPub')->name('post.published');
+
+
+    /**
      * Permanently deleting post
      */
     Route::get('/post/kill/{id}', 'PostsController@kill')->name('post.kill');
@@ -81,6 +100,10 @@ Route::group([
         'uses' => 'UsersController@not_admin',
         'as'   => 'user.not.admin'
     ]);
+
+    Route::get('/post/no-published/{id}','PostsController@noPublished')->name('post.no-publish');
+
+    Route::get('/post/published/{id}','PostsController@published')->name('post.publish');
 
 
 

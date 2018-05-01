@@ -66,7 +66,6 @@
                                                     <td><img src="{{ asset($user->profile->avatar) }}" alt="{{ $user->name}}" width="60px" height="60px" style="border-radius: 50%;"></td>
                                                     <td>{{ $user->name }}</td>
 
-
                                                     <td>
                                                         @if($user->admin)
                                                             <a href="{{ route('user.not.admin', ['id' => $user->id]) }}" class="btn btn-success btn-sm">Remove permissions</a>

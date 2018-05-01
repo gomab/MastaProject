@@ -196,7 +196,8 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
-
+        $post->published = 0;
+        $post->save();
         $post->delete();
 
         Toastr::success('Larticle a été placé dans la corbeille.', 'Brazza HipHop', ["positionClass" => "toast-top-right"]);
@@ -242,5 +243,41 @@ class PostsController extends Controller
         Toastr::success('Article restoré avec succes', 'Brazza HipHop', ["positionClass" => "toast-top-right"]);
 
         return redirect()->route('post.index');
+    }
+
+    public function indexPub()
+    {
+        $posts = Post::where('published', '1')->orderBy('created_at', 'desc')->get();
+
+        return view('admin.post.published', compact('posts'));
+
+    }
+
+    public function indexNoPub()
+    {
+        $posts = Post::where('published', '0')->orderBy('created_at', 'desc')->get();
+
+        return view('admin.post.no-published', compact('posts'));
+
+    }
+
+    public function published($id){
+        $post = Post::find($id);
+        $post->published = 1;
+        $post->save();
+
+        Toastr::success('L article a été mis en ligne.', 'Brazza HipHop', ["positionClass" => "toast-top-right"]);
+
+        return redirect()->back();
+    }
+
+    public function noPublished($id){
+        $post = Post::find($id);
+        $post->published = 0;
+        $post->save();
+
+        Toastr::success('L article a été retiré.', 'Brazza HipHop', ["positionClass" => "toast-top-right"]);
+
+        return redirect()->back();
     }
 }

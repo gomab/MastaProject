@@ -22,12 +22,14 @@
                     <!-- End validation errors -->
 
                     <div class="card">
-                        <div class="card-header card-header-danger">
-                            <h4 class="card-title">ARTICLES/EDITER</h4>
+                        <div class="card-header card-header-primary">
+                            <h5 class="card-title">Articles/Editer</h5>
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-secondary"><a href="{{ route('post.index') }}"><i class="material-icons">home</i></a></button>
-                                <button type="button" class="btn btn-secondary"><a href="{{ route('post.trashed') }}"><i class="material-icons">delete_sweep</i></a></button>
-                                <!--<button type="button" class="btn btn-secondary"><i class="material-icons">delete_sweep</i></button>-->
+                                <button type="button" class="btn btn-secondary" title="Tous les articles"><a href="{{ route('post.index') }}"><i class="material-icons">home</i></a></button>
+                                <button type="button" class="btn btn-secondary" title="Articles Publiés"><a href="{{ route('post.trashed') }}"><i class="material-icons">view_list</i></a></button>
+                                <button type="button" class="btn btn-secondary" title="Articles non publiés"><a href="{{ route('post.trashed') }}"><i class="material-icons">low_priority
+                                        </i></a></button>
+                                <button type="button" class="btn btn-secondary" title="Corbeilles"><a href="{{ route('post.trashed') }}"><i class="material-icons">delete_sweep</i></a></button>
                             </div>
                         </div>
                         <div class="card-body">

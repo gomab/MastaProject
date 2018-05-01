@@ -23,10 +23,14 @@
 
                     <div class="card">
                         <div class="card-header card-header-danger">
-                            <h4 class="card-title">ARTICLES</h4>
+                            <h5 class="card-title">Articles</h5>
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-secondary"><a href="{{ route('post.create') }}"><i class="material-icons">add_circle</i></a></button>
-                                <button type="button" class="btn btn-secondary"><a href="{{ route('post.trashed') }}"><i class="material-icons">delete_sweep</i></a></button>
+                                <button type="button" class="btn btn-secondary" title="Nouvel article"><a href="{{ route('post.create') }}"><i class="material-icons">add_circle</i></a></button>
+                                <button type="button" class="btn btn-secondary" title="Articles Publiés"><a href="{{ route('post.published') }}"><i class="material-icons">view_list</i></a></button>
+                                <button type="button" class="btn btn-secondary" title="Articles non publiés"><a href="{{ route('post.no-published') }}"><i class="material-icons">low_priority
+                                        </i></a></button>
+                                <button type="button" class="btn btn-secondary" title="Corbeilles"><a href="{{ route('post.trashed') }}"><i class="material-icons">delete_sweep</i></a></button>
+
                                 <!--<button type="button" class="btn btn-secondary"><i class="material-icons">delete_sweep</i></button>-->
                             </div>
                         </div>
@@ -35,20 +39,20 @@
                                 <table id="table" class="table table-striped table-bordered" style="width:100%">
                                     <thead class=" text-primary">
                                     <tr>
-                                        <th>
+                                        <th class="th-actions text-center">
                                             ID
                                         </th>
-                                        <th>
+                                        <th class="th-actions text-center">
                                             Image
                                         </th>
-                                        <th>
+                                        <th class="th-actions text-center">
                                             Titre
                                         </th>
-                                        <th>
+                                        <th class="th-actions text-center">
                                             Category
                                         </th>
 
-                                        <th>
+                                        <th class="th-actions text-center">
                                             Content
                                         </th>
 
@@ -56,31 +60,48 @@
                                             Date
                                         </th>-->
 
-                                        <th>
-                                            Action
+                                        <th class="th-actions text-center">
+                                            Status
                                         </th>
-                                        <th>
-                                            Etat
+                                        <th class="th-actions text-center">
+                                            Action
                                         </th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($posts as $key=>$post)
+                                        @if($posts->count() > 0)
+                                            @foreach($posts as $key=>$post)
                                         <tr>
-                                            <td>{{ $key + 1 }}</td>
-                                            <td><img class="img-responsive" width="90px" height="50px"
+                                            <td class="td-actions text-center">{{ $key + 1 }}</td>
+                                            <td class="td-actions text-center"><img class="img-responsive" width="90px" height="50px"
                                                      src="{{ asset('uploads/post/'.$post->featured) }}"
                                                      alt="{{ $post->featured }}">
                                             </td>
-                                            <td>{{ $post->title}}</td>
+                                            <td class="td-actions text-center">{{ $post->title}}</td>
 
-                                            <td>{{ $post->category->name }}</td>
+                                            <td class="td-actions text-center">{{ $post->category->name }}</td>
 
-                                            <td><a href="#">{{ substr($post->content, 0, 30) }}...</a></td>
+                                            <td class="td-actions text-center"><a href="#">{{ substr($post->content, 0, 30) }}...</a></td>
 
                                             <!--<td>{{ $post->updated_at->toFormattedDateString() }}</td>-->
 
-                                            <td><a class="btn btn-info btn-sm"
+                                            <td class="td-actions text-center">
+                                                @if($post->published)
+                                                    <a href="{{ route('post.no-publish', ['id' => $post->id]) }}" class="btn btn-success btn-sm" title="L'article est en ligne cliquer pour le retirer">En ligne</a>
+                                                @else
+                                                    <a href="{{ route('post.publish', ['id' => $post->id]) }}" class="btn btn-default btn-sm" title="L'article n'est pas en ligne cliquer pour le publier">Non publié</a>
+                                                @endif
+                                            <!--
+                                                    @if($post->published)
+                                                <input value="{{ route('post.no-publish', ['id' => $post->id]) }}" id="toggle" type="checkbox" data-toggle="toggle" data-on="Non Publie" data-off="PUBLIE" data-size="small">
+                                                            @else
+                                                <input value="{{ route('post.publish', ['id' => $post->id]) }}" id="toggle" type="checkbox" data-toggle="toggle" data-on="Publie" data-off="NON PUBLIE" data-size="small">
+
+                                                    @endif
+                                                    -->
+                                            </td>
+
+                                            <td class="td-actions text-center"><a class="btn btn-info btn-sm"
                                                    href="{{ route('post.edit', $post->id) }}"><i class="material-icons">mode_edit</i></a>
 
                                                 <form id="delete-form-{{ $post->id }}"
@@ -109,9 +130,15 @@
 
                                             </td>
 
-                                            <td><input id="toggle" type="checkbox" data-toggle="toggle" data-on="Publie" data-off="NON PUBLIE" data-size="small"></td>
+                                            <!-- <td><input id="toggle" type="checkbox" data-toggle="toggle" data-on="Publie" data-off="NON PUBLIE" data-size="small"></td> -->
+
                                         </tr>
                                     @endforeach
+                                          @else
+                                            <th colspan="7" class="text-center">
+                                                <i class="material-icons">hourglass_empty</i><br>Aucun article
+                                            </th>
+                                        @endif
 
                                     </tbody>
                                 </table>
@@ -139,11 +166,6 @@
     </script>
 
     <script>
-        $(function() {
-            $('#toggle').bootstrapToggle({
-                on: 'Enabled',
-                off: 'Disabled'
-            });
-        })
+
     </script>
 @endpush
