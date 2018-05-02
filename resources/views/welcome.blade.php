@@ -3,10 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Brazza Hip-Hop</title>
+    <title>{{ $title }}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ asset('uploads/setting/'.$fav) }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('uploads/setting/'.$fav) }}" type="image/x-icon">
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('frontend/images/favicon.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ asset('frontend/images/favicon.ico') }}" type="image/x-icon">
@@ -90,7 +93,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="logo">
-                        <a href=""><img src="{{ asset('frontend/images/logo.png') }}" alt="" class="img-fluid"></a>
+                        <a href=""><img src="{{ asset('uploads/setting/'.$logo) }}" alt="" class="img-fluid"></a>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -114,7 +117,12 @@
                     <div class="col-lg-10 col-md-12">
                         <ul class="list-unstyled list-inline">
                             <li class="list-inline-item active"><a href="index.html">HOME</a></li>
-                            <li class="list-inline-item"><a href="">MUSIQUE</a></li>
+
+                            @foreach($categories as $category)
+                                <li class="list-inline-item"><a href="">{{ $category->name }}</a></li>
+                            @endforeach
+
+
                             <li class="list-inline-item"><a href="">VIDEO</a></li>
 
                             <li class="list-inline-item"><a>PAGES<i class="fa fa-angle-down"></i></a>
@@ -264,17 +272,44 @@
                 <div class="col-lg-8 col-md-12 padding-fix-r">
                     <div class="owl-carousel owl-slider">
                         <div class="slider-content">
-                            <img src="{{ asset('uploads/post/'.$first_post->featured) }}" alt="" class="img-fluid" style="width-max:auto; height: 477px">
-                            <div class="slider-layer">
-                                <p><a href="">{{ $first_post->title}}</a></p>
+                              <!--<img src="{{ asset('uploads/post/'.$first_post->featured) }}" alt="" class="img-fluid" style="width-max:auto; height: 477px">-->
+                              <img src="{{ asset('uploads/post/'.$first_post->featured) }}" alt="" class="img-fluid">
+                              <div class="slider-layer">
+                                <p><a href="#"><strong>{{ $first_post->title}}</strong></a></p>
+                                  <p><a href="">{{ substr($first_post->content, 0, 180) }}...</a></p>
                                 <ul class="list-unstyled list-inline">
                                     <li class="list-inline-item">{{ $first_post->category->name }}</li>
                                     <li class="list-inline-item"> {{ $first_post->created_at->diffForHumans() }}</li>
                                 </ul>
+                              </div>
+                        </div>
+
+                        <div class="slider-content">
+                            <img src="{{ asset('uploads/post/'.$second_post->featured) }}" alt="" class="img-fluid">
+                            <div class="slider-layer">
+                                <p><a href="#"><strong>{{ $second_post->title}}</strong></a></p>
+                                <p><a href="">{{ substr($second_post->content, 0, 180) }}...</a></p>
+                                <ul class="list-unstyled list-inline">
+                                    <li class="list-inline-item">{{ $second_post->category->name }}</li>
+                                    <li class="list-inline-item"> {{ $second_post->created_at->diffForHumans() }}</li>
+                                </ul>
                             </div>
                         </div>
+
                         <div class="slider-content">
-                            <img src="{{ asset('frontend/images/slider-2.jpg') }}" alt="" class="img-fluid">
+                            <img src="{{ asset('uploads/post/'.$third_post->featured) }}" alt="" class="img-fluid">
+                            <div class="slider-layer">
+                                <p><a href="#"><strong>{{ $third_post->title}}</strong></a></p>
+                                <p><a href="">{{ substr($third_post->content, 0, 180) }}...</a></p>
+                                <ul class="list-unstyled list-inline">
+                                    <li class="list-inline-item">{{ $third_post->category->name }}</li>
+                                    <li class="list-inline-item"> {{ $third_post->created_at->diffForHumans() }}</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="slider-content">
+                            <img src="{{ asset('frontend/images/slider-2.jpg') }}" alt="{{ $first_post->title }}" class="img-fluid">
                             <div class="slider-layer">
                                 <p><a href="">The purpose of this handout is to give some basic instruction. It is usually composed of several sentences that together develop one.</a></p>
                                 <ul class="list-unstyled list-inline">
@@ -305,39 +340,52 @@
                                 <li class="list-inline-item">September 24, 2017</li>
                             </ul>
                         </div>
-                    </div>-->
-                        <div class="owl-carousel owl-slider">
-                            <div class="slider-content">
-                                <img src="{{ asset('frontend/images/health.jpg') }}" alt="" class="img-fluid">
-                                <div class="slider-layer">
-                                    <p><a href="">{{ $first_post->title}}</a></p>
-                                    <ul class="list-unstyled list-inline">
-                                        <li class="list-inline-item">{{ $first_post->category->name }}</li>
-                                        <li class="list-inline-item">September 24, 2017</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="slider-content">
-                                <img src="{{ asset('frontend/images/slider-2.jpg') }}" alt="" class="img-fluid">
-                                <div class="slider-layer">
-                                    <p><a href="">The purpose of this handout is to give some basic instruction. It is usually composed of several sentences that together develop one.</a></p>
-                                    <ul class="list-unstyled list-inline">
-                                        <li class="list-inline-item">LIFE STYLE</li>
-                                        <li class="list-inline-item">September 24, 2017</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="slider-content">
-                                <img src="{{ asset('frontend/images/slider-3.jpg') }}" alt="" class="img-fluid">
-                                <div class="slider-layer">
-                                    <p><a href="">It is usually composed of several sentences that together develop one. It is usually composed of several sentences that together develop one.</a></p>
-                                    <ul class="list-unstyled list-inline">
-                                        <li class="list-inline-item">FOOD</li>
-                                        <li class="list-inline-item">September 24, 2017</li>
-                                    </ul>
-                                </div>
+                     </div>-->
+                    <div class="owl-carousel owl-slider">
+                        <div class="slider-content">
+                            <img src="{{ asset('uploads/post/'.$first_slider->featured) }}" alt="" class="img-fluid">
+                            <div class="slider-layer">
+                                <p><a href="#">{{ $first_slider->title}}</a></p>
+                                <!--<p><a href="">{{ substr($first_slider->content, 0, 50) }}...</a></p>-->
+                                <ul class="list-unstyled list-inline">
+                                    <li class="list-inline-item">{{ $first_slider->category->name }}</li>
+                                    <li class="list-inline-item"> {{ $first_slider->created_at->diffForHumans() }}</li>
+                                </ul>
                             </div>
                         </div>
+                        <div class="slider-content">
+                            <img src="{{ asset('frontend/images/health.jpg') }}" alt="" class="img-fluid">
+                            <div class="slider-layer">
+                                <p><a href="">{{ $first_post->title}}</a></p>
+                                <ul class="list-unstyled list-inline">
+                                    <li class="list-inline-item">{{ $first_post->category->name }}</li>
+                                    <li class="list-inline-item">September 24, 2017</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="slider-content">
+                            <img src="{{ asset('frontend/images/slider-2.jpg') }}" alt="" class="img-fluid">
+                            <div class="slider-layer">
+                                <p><a href="">The purpose of this handout is to give some basic instruction. It is usually composed of several sentences that together develop one.</a></p>
+                                <ul class="list-unstyled list-inline">
+                                    <li class="list-inline-item">LIFE STYLE</li>
+                                    <li class="list-inline-item">September 24, 2017</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="slider-content">
+                            <img src="{{ asset('frontend/images/slider-3.jpg') }}" alt="" class="img-fluid">
+                            <div class="slider-layer">
+                                <p><a href="">It is usually composed of several sentences that together develop one. It is usually composed of several sentences that together develop one.</a></p>
+                                <ul class="list-unstyled list-inline">
+                                    <li class="list-inline-item">FOOD</li>
+                                    <li class="list-inline-item">September 24, 2017</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div class="slider-sidebar">
                         <img src="{{ asset('frontend/images/health.jpg') }}" alt="" class="img-fluid">
                         <div class="sidebar-layer">
@@ -360,59 +408,34 @@
             <div class="row">
                 <div class="col-lg-8 col-md-12">
                     <div class="latest-top">
-                        <h4>LATEST NEWS</h4>
+                        <h4>MUSIQUE</h4>
                     </div>
                     <div class="owl-carousel latest-slider">
                         <div class="latest-item">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="latest-content">
-                                        <img src="{{ asset('frontend/images/latest-1.jpg') }}" alt="" class="img-fluid">
+                                        <img src="{{ asset('uploads/post/'.$first_music->featured) }}" alt="" class="img-fluid">
                                         <h6><a href="">These sentences are selected from various online news.</a></h6>
                                         <ul class="list-unstyled list-inline">
-                                            <li class="list-inline-item">TECHNOLOGY</li>
+                                            <li class="list-inline-item">{{ $first_music->category->name }}</li>
                                             <li class="list-inline-item">September 24, 2017</li>
                                         </ul>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque labore, quam voluptatibus ipsum. Ex tenetur, quasi, provident animi magni voluptas fugit quae ad........</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="slider-content">
+                                    @foreach($music->posts()->orderBy('created_at', 'desc')->skip(1)->take(5)->get() as $post)
+                                        <div class="slider-content">
                                         <div class="slider-img">
-                                            <a href=""><img src="images/latest-3.jpg" alt="" class="img-fluid"></a>
+                                            <a href=""><img src="{{ asset('uploads/post/'.$post->featured) }}" alt="" class="img-responsive" width="130px" height="70px"></a>
                                         </div>
                                         <div class="img-content">
-                                            <p><a href="">These sentences are selected from various online news.</a></p>
-                                            <span>September 24, 2017</span>
+                                            <p><a href="">{{ $post->title }}</a></p>
+                                            <span>{{ $post->created_at->diffForHumans() }}</span>
                                         </div>
                                     </div>
-                                    <div class="slider-content">
-                                        <div class="slider-img">
-                                            <a href=""><img src="images/latest-4.jpg" alt="" class="img-fluid"></a>
-                                        </div>
-                                        <div class="img-content">
-                                            <p><a href="">These sentences are selected from various online news.</a></p>
-                                            <span>September 24, 2017</span>
-                                        </div>
-                                    </div>
-                                    <div class="slider-content">
-                                        <div class="slider-img">
-                                            <a href=""><img src="images/latest-5.jpg" alt="" class="img-fluid"></a>
-                                        </div>
-                                        <div class="img-content">
-                                            <p><a href="">These sentences are selected from various online news.</a></p>
-                                            <span>September 24, 2017</span>
-                                        </div>
-                                    </div>
-                                    <div class="slider-content">
-                                        <div class="slider-img">
-                                            <a href=""><img src="images/latest-6.jpg" alt="" class="img-fluid"></a>
-                                        </div>
-                                        <div class="img-content">
-                                            <p><a href="">These sentences are selected from various online news.</a></p>
-                                            <span>September 24, 2017</span>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -1085,8 +1108,8 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-6">
                         <div class="footer-about">
-                            <h4>ABOUT</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, ex, ea. Mollitia consequuntur dolorum cum sed ea cupiditate nisi in quis animi. Accusantium magni impedit, magnam! Similique cumque labore illum.</p>
+                            <h4>A PROPOS</h4>
+                            <p>{{ $settings->about }}</p>
                             <ul class="list-unstyled list-inline">
                                 <li class="list-inline-item"><a href=""><i class="fa fa-facebook"></i></a></li>
                                 <li class="list-inline-item"><a href=""><i class="fa fa-twitter"></i></a></li>
@@ -1123,12 +1146,12 @@
                     </div>
                     <div class="col-md-6">
                         <div class="copyright-text">
-                            <p>Copyright &copy; 2017 <a href="">TenNews</a>. All Rights Reserved.</p>
+                            <p>Copyright &copy; 2018 <a href="">{{ $settings->name }}</a>. All Rights Reserved.</p>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="designer-text text-right">
-                            <p>Designed With <i class="fa fa-heart"></i> By <a href="">SnazzyTheme</a></p>
+                            <p>{{ $settings->name }}</p>
                         </div>
                         <div class="back-to-top">
                             <i class="fa fa-angle-double-up"></i>

@@ -20,15 +20,19 @@ class FrontEndController extends Controller
         return view('welcome')
             ->with('title', Setting::first()->name)
             ->with('logo', Setting::first()->logo)
+            ->with('fav', Setting::first()->favicon)
             ->with('categories', Category::take(5)->get())
             ->with('first_post', Post::orderBy('created_at', 'desc')->first())
+            ->with('content', Post::first()->content)
             ->with('second_post', Post::orderBy('created_at', 'desc')->skip(1)->take(1)->get()->first())
+            ->with('first_slider', Post::where('category_id', '1')->orderBy('created_at', 'desc')->skip(1)->take(1)->get()->first())
             ->with('third_post', Post::orderBy('created_at', 'desc')->skip(2)->take(1)->get()->first())
             ->with('slide_post', Post::orderBy('created_at', 'desc'))
-            ->with('culture', Category::find(7))
-            ->with('science', Category::find(8))
-            ->with('technology', Category::find(9));
-            //->with('settings', Setting::first());
+            //find($id)
+            ->with('music', Category::find(1))
+            ->with('sport', Category::find(2))
+            ->with('first_music', Post::where('category_id', '1')->orderBy('created_at', 'desc')->take(1)->get()->first())
+            ->with('settings', Setting::first());
 
     }
 
