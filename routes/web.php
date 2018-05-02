@@ -13,6 +13,13 @@
 
 Route::get('/', 'FrontEndController@index')->name('welcome');
 
+
+Route::get('/post/{slug}', [
+    'uses' => 'FrontEndController@singlePost',
+    'as' => 'post.single'
+]);
+
+
 /**
  * Route::get('/', function () {
 return view('welcome');

@@ -41,18 +41,27 @@ class FrontEndController extends Controller
      * @return mixed
      */
     public function singlePost($slug){
-        $post = Post::where('slug', $slug)->first();
+        Carbon::setLocale('fr');
+        setlocale(LC_TIME, 'fr');
+       // $category = Category::where('slug', $cat)->first();
+        $post     = Post::where('slug', $slug)->first();
+
+        dd($post);
 
         $next_id = Post::where('id', '>', $post->id)->min('id');
         $prev_id = Post::where('id', '<', $post->id)->max('id');
 
-        return view('front.single')->with('post', $post)
-            ->with('title', $post->title)
-           // ->with('settings', Setting::first())
-            ->with('categories', Category::take(5)->get())
-            ->with('next', Post::find($next_id))
-            ->with('prev', Post::find($prev_id))
-            ->with('tags', Tag::all());
+        return view('single')->with('post', $post)
+                               // ->with('category', $category)
+                                ->with('title', $post->title)
+                                ->with('settings', Setting::first())
+                                ->with('categories', Category::take(5)->get())
+                                ->with('title', Setting::first()->name)
+                                ->with('logo', Setting::first()->logo)
+                                ->with('fav', Setting::first()->favicon)
+                                ->with('next', Post::find($next_id))
+                                ->with('prev', Post::find($prev_id))
+                                ->with('tags', Tag::all());
 
     }
 

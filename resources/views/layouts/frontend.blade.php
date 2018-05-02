@@ -1,48 +1,7 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>{{ $title }}</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ asset('uploads/setting/'.$fav) }}" type="image/x-icon">
-    <link rel="icon" href="{{ asset('uploads/setting/'.$fav) }}" type="image/x-icon">
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ asset('frontend/images/favicon.ico') }}" type="image/x-icon">
-    <link rel="icon" href="{{ asset('frontend/images/favicon.ico') }}" type="image/x-icon">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="{{ asset('frontend/css/main.css') }}">
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="{{ asset('frontend/css/assets/bootstrap.min.css') }}">
-
-    <!-- Fontawesome Icon -->
-    <link rel="stylesheet" href="{{ asset('frontend/css/assets/font-awesome.min.css') }}">
-
-    <!-- Animate CSS -->
-    <link rel="stylesheet" href="{{ asset('frontend/css/assets/animate.css') }}">
-
-    <!-- Mean Menu -->
-    <link rel="stylesheet" href="{{ asset('frontend/css/assets/meanmenu.min.css') }}">
-
-    <!-- Owl Carousel -->
-    <link rel="stylesheet" href="{{ asset('frontend/css/assets/owl.carousel.min.css') }}">
-
-    <!-- Magnific Popup -->
-    <link rel="stylesheet" href="{{ asset('frontend/css/assets/magnific-popup.css') }}">
-
-    <!-- Custom Style -->
-    <link rel="stylesheet" href="{{ asset('frontend/css/assets/normalize.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/css/assets/responsive.css') }}">
-
+    @include('includes.head')
 </head>
 <body>
 <!-- Pre-Loader -->
@@ -52,354 +11,27 @@
 
 <div id="main">
     <!-- Top Bar -->
-    <section class="top-bar">
-        <div class="container">
-            <div class="bar-content">
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="bar-left">
-                            <ul class="list-unstyled list-inline">
-                                <li class="list-inline-item"><i class="fa fa-calendar-check-o"></i>Sunday, Sep 24, 2017</li>
-                                <li class="list-inline-item"><i class="fa fa-cloud"></i>New York, 19°C</li>
-                                <li class="list-inline-item"><a href="">Advertise</a></li>
-                                <li class="list-inline-item"><a href="">Write Us</a></li>
-                                <li class="list-inline-item"><a href="">About</a></li>
-                                <li class="list-inline-item"><a href="">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="bar-social text-right">
-                            <ul class="list-unstyled list-inline">
-                                <li class="list-inline-item"><a href=""><i class="fa fa-facebook"></i></a></li>
-                                <li class="list-inline-item"><a href=""><i class="fa fa-twitter"></i></a></li>
-                                <li class="list-inline-item"><a href=""><i class="fa fa-linkedin"></i></a></li>
-                                <li class="list-inline-item"><a href=""><i class="fa fa-google-plus"></i></a></li>
-                                <li class="list-inline-item"><a href=""><i class="fa fa-rss"></i></a></li>
-                                <li class="list-inline-item"><a href=""><i class="fa fa-youtube"></i></a></li>
-                                <li class="list-inline-item"><a href=""><i class="fa fa-skype"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        @include('includes.sidebar')
     <!-- End Top Bar -->
 
     <!-- Logo Area -->
-    <section class="logo-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="logo">
-                        <a href=""><img src="{{ asset('uploads/setting/'.$logo) }}" alt="" class="img-fluid"></a>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="searchbar text-right">
-                        <form action="#">
-                            <input placeholder="Search Here" type="text" required="">
-                            <button type="submit"><i class="fa fa-search"></i></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        @include('includes.header')
     <!-- End Logo Area -->
 
     <!-- Menu Area -->
-    <section class="menu-area">
-        <div class="container">
-            <div class="menu-content">
-                <div class="row">
-                    <div class="col-lg-10 col-md-12">
-                        <ul class="list-unstyled list-inline">
-                            <li class="list-inline-item active"><a href="index.html">HOME</a></li>
-
-                            @foreach($categories as $category)
-                                <li class="list-inline-item"><a href="">{{ $category->name }}</a></li>
-                            @endforeach
-
-
-                            <li class="list-inline-item"><a href="">VIDEO</a></li>
-
-                            <li class="list-inline-item"><a>PAGES<i class="fa fa-angle-down"></i></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="index.html">HOME</a></li>
-                                    <li><a href="about.html">ABOUT</a></li>
-                                    <li><a>CATAGORY<i class="fa fa-angle-right"></i></a>
-                                        <ul class="list-unstyled">
-                                            <li><a href="catagory-one.html">CATAGORY ONE</a></li>
-                                            <li><a href="catagory-two.html">CATAGORY TWO</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a>NEWS DETAILS<i class="fa fa-angle-right"></i></a>
-                                        <ul class="list-unstyled">
-                                            <li><a href="news-details-one.html">NEWS DETAILS ONE</a></li>
-                                            <li><a href="news-details-two.html">NEWS DETAILS TWO</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="contact.html">CONTACT</a></li>
-                                    <li><a href="faq.html">FAQ</a></li>
-                                    <li><a href="coming-soon.html">COMING SOON</a></li>
-                                    <li><a href="404.html">404</a></li>
-                                </ul>
-                            </li>
-                            <li class="list-inline-item static"><a>MEGA MENU<i class="fa fa-angle-down"></i></a>
-                                <ul class="mega-menu list-unstyled">
-                                    <li>
-                                        <h4>CATAGORIES</h4>
-                                        <a href="">WORLD & BUSINESS</a>
-                                        <a href="">TECH & POLITICS</a>
-                                        <a href="">SPORTS &ENVIRONMENT</a>
-                                        <a href="">LIFESTYLE & FASHION</a>
-                                        <a href="">ANIMAL & POLITICS</a>
-                                        <a href="">HEALTH & NATIONAL</a>
-                                        <a href="">CULTURE & MUSIC</a>
-                                    </li>
-                                    <li>
-                                        <h4>ACCESSORIES</h4>
-                                        <a href="">LEATHER & SHOES</a>
-                                        <a href="">GLASSES & WATCHES</a>
-                                        <a href="">MEN ACCESSORIES</a>
-                                        <a href="">WOMEN ACCESSORIES</a>
-                                        <a href="">EARRING & NECKLACES</a>
-                                        <a href="">BEACH CLOTHING</a>
-                                        <a href="">GLOVES & SCARVES</a>
-                                    </li>
-                                    <li>
-                                        <h4>TOP LINKS</h4>
-                                        <a href="">BECOME A MEMBER</a>
-                                        <a href="">LEGAL INFORMATION</a>
-                                        <a href="">PEIVACY POLICY</a>
-                                        <a href="">TERMS & CONDITION</a>
-                                        <a href="">PRESS RELEASE</a>
-                                        <a href="">WORK FOR US</a>
-                                        <a href="">NEWSLETTER SIGNUP</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-2 col-md-12">
-                        <div class="clock text-right">
-                            <span id="dg-clock"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        @include('includes.menu')
     <!-- End Menu Area -->
 
     <!-- Mobile Menu -->
-    <section class="mobile-menu-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="mobile-menu">
-                        <nav id="dropdown">
-                            <a href=""><img src="{{ asset('frontend/images/mobile-logo.png') }}" alt="" class="img-fluid"></a>
-                            <a href=""><i class="fa fa-home"></i></a>
-                            <ul>
-                                <li class="list-inline-item"><a href="index.html">HOME</a></li>
-                                <li class="list-inline-item"><a href="">PAGES</a>
-                                    <ul class="list-unstyled">
-                                        <li><a href="index.html">HOME</a></li>
-                                        <li><a href="about.html">ABOUT</a></li>
-                                        <li><a href="">CATAGORY</a>
-                                            <ul>
-                                                <li><a href="catagory-one.html">CATAGORY ONE</a></li>
-                                                <li><a href="catagory-two.html">CATAGORY TWO</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="">NEWS DETAILS</a>
-                                            <ul>
-                                                <li><a href="news-details-one.html">NEWS DETAILS ONE</a></li>
-                                                <li><a href="news-details-two.html">NEWS DETAILS TWO</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="contact.html">CONTACT</a></li>
-                                        <li><a href="faq.html">FAQ</a></li>
-                                        <li><a href="coming-soon.html">COMING_SOON</a></li>
-                                        <li><a href="404.html">404</a></li>
-                                    </ul>
-                                </li>
-                                <li class="list-inline-item"><a href="">WORLD</a></li>
-                                <li class="list-inline-item"><a href="">HEALTH</a></li>
-                                <li class="list-inline-item"><a href="">TECHNOLOGY</a></li>
-                                <li class="list-inline-item"><a href="">POLITICS</a></li>
-                                <li class="list-inline-item"><a href="">SPORTS</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        @include('includes.mobilemenu')
     <!-- End Mobile Menu -->
 
     <!-- Web Ticker -->
-    <section class="top-news">
-        <div class="container">
-            <div class="news-content">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="ticker d-flex justify-content-between">
-                            <div class="news-head">
-                                <span>BREAKING NEWS<i class="fa fa-caret-right"></i></span>
-                            </div>
-                            <ul id="webTicker">
-                                <li><a href=""><i class="fa fa-dot-circle-o"></i>These sentences are selected from various online news.</a></li>
-                                <li><a href=""><i class="fa fa-dot-circle-o"></i>This handout will help you understand how paragraphs are formed.</a></li>
-                                <li><a href=""><i class="fa fa-dot-circle-o"></i>It is usually composed of several sentences that together develop one.</a></li>
-                                <li><a href=""><i class="fa fa-dot-circle-o"></i>The purpose of this handout is to give some basic instruction.</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        @include('includes.tinker')
     <!-- End Web Ticker -->
 
     <!-- Slider Area -->
-    <section class="slider-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-md-12 padding-fix-r">
-                    <div class="owl-carousel owl-slider">
-                        <div class="slider-content">
-                              <!--<img src="{{ asset('uploads/post/'.$first_post->featured) }}" alt="" class="img-fluid" style="width-max:auto; height: 477px">-->
-                              <img src="{{ asset('uploads/post/'.$first_post->featured) }}" alt="" class="img-fluid">
-                              <div class="slider-layer">
-                                <p><a href="{{ route('post.single', ['category' => $first_post->category->slug, 'slug'=>$first_post->slug]) }}"><strong>{{ $first_post->title}}</strong></a></p>
-                                  <p><a href="">{{ substr($first_post->content, 0, 180) }}...</a></p>
-                                <ul class="list-unstyled list-inline">
-                                    <li class="list-inline-item">{{ $first_post->category->name }}</li>
-                                    <li class="list-inline-item"> {{ $first_post->created_at->diffForHumans() }}</li>
-                                </ul>
-                              </div>
-                        </div>
-
-                        <div class="slider-content">
-                            <img src="{{ asset('uploads/post/'.$second_post->featured) }}" alt="" class="img-fluid">
-                            <div class="slider-layer">
-                                <p><a href="#"><strong>{{ $second_post->title}}</strong></a></p>
-                                <p><a href="">{{ substr($second_post->content, 0, 180) }}...</a></p>
-                                <ul class="list-unstyled list-inline">
-                                    <li class="list-inline-item">{{ $second_post->category->name }}</li>
-                                    <li class="list-inline-item"> {{ $second_post->created_at->diffForHumans() }}</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="slider-content">
-                            <img src="{{ asset('uploads/post/'.$third_post->featured) }}" alt="" class="img-fluid">
-                            <div class="slider-layer">
-                                <p><a href="#"><strong>{{ $third_post->title}}</strong></a></p>
-                                <p><a href="">{{ substr($third_post->content, 0, 180) }}...</a></p>
-                                <ul class="list-unstyled list-inline">
-                                    <li class="list-inline-item">{{ $third_post->category->name }}</li>
-                                    <li class="list-inline-item"> {{ $third_post->created_at->diffForHumans() }}</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="slider-content">
-                            <img src="{{ asset('frontend/images/slider-2.jpg') }}" alt="{{ $first_post->title }}" class="img-fluid">
-                            <div class="slider-layer">
-                                <p><a href="">The purpose of this handout is to give some basic instruction. It is usually composed of several sentences that together develop one.</a></p>
-                                <ul class="list-unstyled list-inline">
-                                    <li class="list-inline-item">LIFE STYLE</li>
-                                    <li class="list-inline-item">September 24, 2017</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="slider-content">
-                            <img src="{{ asset('frontend/images/slider-3.jpg') }}" alt="" class="img-fluid">
-                            <div class="slider-layer">
-                                <p><a href="">It is usually composed of several sentences that together develop one. It is usually composed of several sentences that together develop one.</a></p>
-                                <ul class="list-unstyled list-inline">
-                                    <li class="list-inline-item">FOOD</li>
-                                    <li class="list-inline-item">September 24, 2017</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-12 slider-fix">
-                    <!--<div class="slider-sidebar sidebar-o">
-                        <img src="{{ asset('frontend/images/tech.jpg') }}" alt="" class="img-fluid">
-                        <div class="sidebar-layer">
-                            <p><a href="">It is usually composed of several sentences that together develop one.</a></p>
-                            <ul class="list-unstyled list-inline">
-                                <li class="list-inline-item">TECHNOLOGY</li>
-                                <li class="list-inline-item">September 24, 2017</li>
-                            </ul>
-                        </div>
-                     </div>-->
-                    <div class="owl-carousel owl-slider">
-                        <div class="slider-content">
-                            <img src="{{ asset('uploads/post/'.$first_slider->featured) }}" alt="" class="img-fluid">
-                            <div class="slider-layer">
-                                <p><a href="#">{{ $first_slider->title}}</a></p>
-                                <!--<p><a href="">{{ substr($first_slider->content, 0, 50) }}...</a></p>-->
-                                <ul class="list-unstyled list-inline">
-                                    <li class="list-inline-item">{{ $first_slider->category->name }}</li>
-                                    <li class="list-inline-item"> {{ $first_slider->created_at->diffForHumans() }}</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="slider-content">
-                            <img src="{{ asset('frontend/images/health.jpg') }}" alt="" class="img-fluid">
-                            <div class="slider-layer">
-                                <p><a href="">{{ $first_post->title}}</a></p>
-                                <ul class="list-unstyled list-inline">
-                                    <li class="list-inline-item">{{ $first_post->category->name }}</li>
-                                    <li class="list-inline-item">September 24, 2017</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="slider-content">
-                            <img src="{{ asset('frontend/images/slider-2.jpg') }}" alt="" class="img-fluid">
-                            <div class="slider-layer">
-                                <p><a href="">The purpose of this handout is to give some basic instruction. It is usually composed of several sentences that together develop one.</a></p>
-                                <ul class="list-unstyled list-inline">
-                                    <li class="list-inline-item">LIFE STYLE</li>
-                                    <li class="list-inline-item">September 24, 2017</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="slider-content">
-                            <img src="{{ asset('frontend/images/slider-3.jpg') }}" alt="" class="img-fluid">
-                            <div class="slider-layer">
-                                <p><a href="">It is usually composed of several sentences that together develop one. It is usually composed of several sentences that together develop one.</a></p>
-                                <ul class="list-unstyled list-inline">
-                                    <li class="list-inline-item">FOOD</li>
-                                    <li class="list-inline-item">September 24, 2017</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="slider-sidebar">
-                        <img src="{{ asset('frontend/images/health.jpg') }}" alt="" class="img-fluid">
-                        <div class="sidebar-layer">
-                            <p><a href="">These sentences are selected from various online news.</a></p>
-                            <ul class="list-unstyled list-inline">
-                                <li class="list-inline-item">HEALTH</li>
-                                <li class="list-inline-item">September 24, 2017</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        @include('includes.slider')
     <!-- End Slider Area -->
 
     <!-- All News -->
@@ -427,14 +59,14 @@
                                 <div class="col-md-6">
                                     @foreach($music->posts()->orderBy('created_at', 'desc')->skip(1)->take(5)->get() as $post)
                                         <div class="slider-content">
-                                        <div class="slider-img">
-                                            <a href=""><img src="{{ asset('uploads/post/'.$post->featured) }}" alt="" class="img-responsive" width="130px" height="70px"></a>
+                                            <div class="slider-img">
+                                                <a href=""><img src="{{ asset('uploads/post/'.$post->featured) }}" alt="" class="img-responsive" width="130px" height="70px"></a>
+                                            </div>
+                                            <div class="img-content">
+                                                <p><a href="">{{ $post->title }}</a></p>
+                                                <span>{{ $post->created_at->diffForHumans() }}</span>
+                                            </div>
                                         </div>
-                                        <div class="img-content">
-                                            <p><a href="">{{ $post->title }}</a></p>
-                                            <span>{{ $post->created_at->diffForHumans() }}</span>
-                                        </div>
-                                    </div>
                                     @endforeach
                                 </div>
                             </div>
@@ -1102,65 +734,7 @@
     <!-- End Other News -->
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-c">
-                <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="footer-about">
-                            <h4>A PROPOS</h4>
-                            <p>{{ $settings->about }}</p>
-                            <ul class="list-unstyled list-inline">
-                                <li class="list-inline-item"><a href=""><i class="fa fa-facebook"></i></a></li>
-                                <li class="list-inline-item"><a href=""><i class="fa fa-twitter"></i></a></li>
-                                <li class="list-inline-item"><a href=""><i class="fa fa-linkedin"></i></a></li>
-                                <li class="list-inline-item"><a href=""><i class="fa fa-google-plus"></i></a></li>
-                                <li class="list-inline-item"><a href=""><i class="fa fa-rss"></i></a></li>
-                                <li class="list-inline-item"><a href=""><i class="fa fa-youtube"></i></a></li>
-                                <li class="list-inline-item"><a href=""><i class="fa fa-skype"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="footer-link">
-                            <h4>ADDITIONAL</h4>
-                            <ul class="list-unstyled">
-                                <li><a href=""><i class="fa fa-caret-right"></i>Become A Member</a></li>
-                                <li><a href=""><i class="fa fa-caret-right"></i>Legal Agreement</a></li>
-                                <li><a href=""><i class="fa fa-caret-right"></i>Privacy Policy</a></li>
-                                <li><a href=""><i class="fa fa-caret-right"></i>Terms & Condition</a></li>
-                                <li><a href=""><i class="fa fa-caret-right"></i>Work For Us</a></li>
-                                <li><a href=""><i class="fa fa-caret-right"></i>Newsletter Signup</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="footer-twitter">
-                            <h4>TWITTER</h4>
-                            <ul class="list-unstyled">
-                                <li><i class="fa fa-twitter"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="">https://bh.com/</a></li>
-                                <li><i class="fa fa-twitter"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="">https://bh.com/</a></li>
-                                <li><i class="fa fa-twitter"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="">https://bh.com/</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="copyright-text">
-                            <p>Copyright &copy; 2018 <a href="">{{ $settings->name }}</a>. All Rights Reserved.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="designer-text text-right">
-                            <p>{{ $settings->name }}</p>
-                        </div>
-                        <div class="back-to-top">
-                            <i class="fa fa-angle-double-up"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+        @include('includes.footer')
     <!-- End Footer -->
 </div>
 
