@@ -130,7 +130,7 @@ class CategoriesController extends Controller
             if(!file_exists('uploads/category')){
                 mkdir('uploads/category', 0777, true);
             }
-            $featured->move('uploads/category',$imagename);
+            $image->move('uploads/category',$imagename);
         }else{
             $imagename = $category->image;
         }

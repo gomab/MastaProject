@@ -1102,7 +1102,7 @@ var demo = {
         marker.setMap(map);
 
 
-        // Custom Skin & Settings Map
+        // Custom Skin & Setting Map
         var myLatlng = new google.maps.LatLng(40.748817, -73.985428);
         var mapOptions = {
             zoom: 13,
@@ -1202,7 +1202,7 @@ var demo = {
 
         var marker = new google.maps.Marker({
             position: myLatlng,
-            title: "Custom Skin & Settings Map!"
+            title: "Custom Skin & Setting Map!"
         });
 
         marker.setMap(map);

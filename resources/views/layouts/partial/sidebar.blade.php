@@ -51,6 +51,13 @@ Tip 2: you can also add an image using data-image tag
                 </a>
             </li>
 
+            <li class="nav-item {{ Request::is('admin/setting*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('settings') }}">
+                    <i class="material-icons">settings</i>
+                    <p>CONFIGURATION</p>
+                </a>
+            </li>
+
 
         </ul>
     </div>

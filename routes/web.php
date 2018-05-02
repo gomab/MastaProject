@@ -105,6 +105,20 @@ Route::group([
 
     Route::get('/post/published/{id}','PostsController@published')->name('post.publish');
 
+    //Route::get('/settings','SettingsController@update')->name('settings');
+
+    //Route::resource('/settings', 'SettingsController');
+
+    Route::get('/settings', [
+        'uses' => 'SettingsController@index',
+        'as'   => 'settings'
+    ]);
+
+    Route::post('/settings/update', [
+        'uses' => 'SettingsController@update',
+        'as'   => 'settings.update'
+    ]);
+
 
 
 

@@ -23,7 +23,7 @@
 
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h5 class="card-title">Articles/Editer</h5>
+                            <h5 class="card-title">Articles/Nouveau</h5>
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <button type="button" class="btn btn-secondary" title="Tous les articles"><a href="{{ route('post.index') }}"><i class="material-icons">home</i></a></button>
                                 <button type="button" class="btn btn-secondary" title="Articles Publiés"><a href="{{ route('post.trashed') }}"><i class="material-icons">view_list</i></a></button>

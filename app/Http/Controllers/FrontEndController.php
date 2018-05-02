@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Post;
-//use App\Setting;
+use App\Setting;
 use App\Tag;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -18,7 +18,8 @@ class FrontEndController extends Controller
         Carbon::setLocale('fr');
         setlocale(LC_TIME, 'fr');
         return view('welcome')
-            //->with('title', Setting::first()->site_name)
+            ->with('title', Setting::first()->name)
+            ->with('logo', Setting::first()->logo)
             ->with('categories', Category::take(5)->get())
             ->with('first_post', Post::orderBy('created_at', 'desc')->first())
             ->with('second_post', Post::orderBy('created_at', 'desc')->skip(1)->take(1)->get()->first())
