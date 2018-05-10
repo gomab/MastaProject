@@ -19,6 +19,11 @@ Route::get('/post/{slug}', [
     'as' => 'post.single'
 ]);
 
+Route::get('/category/{id}', [
+    'uses' => 'FrontEndController@category',
+    'as' => 'category.single'
+]);
+
 
 /**
  * Route::get('/', function () {
@@ -30,7 +35,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/admin/dashboard', 'HomeController@index')->name('dashboard');
+//Route::get('/admin/dashboard', 'HomeController@index')->name('dashboard');
+Route::get('/user/homepage', 'HomeController@index')->name('homepage');
 
 Route::group([
     'prefix'     => 'admin',

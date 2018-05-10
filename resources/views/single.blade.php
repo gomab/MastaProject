@@ -33,8 +33,8 @@
                     <div class="p-content">
                         <h4></h4>
                         <ul class="list-unstyled list-inline">
-                            <li class="list-inline-item"><a href="">ACCUEIL</a></li>
-                            <li class="list-inline-item"><i class="fa fa-long-arrow-right"></i>{{ $post->category->name }}</li>
+                            <li class="list-inline-item"><a href="{{ route('welcome') }}">ACCUEIL</a></li>
+                            <li class="list-inline-item"><i class="fa fa-long-arrow-right"></i><a href="{{ route('category.single', ['id' => $post->category->id]) }}">{{ $post->category->name }}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -115,6 +115,12 @@
                         <li class="list-inline-item"><a href=""><i class="fa fa-pinterest"></i></a></li>
                     </ul>
                 </div>
+
+                <!-- Pagination -->
+
+
+                <!-- End pagination -->
+
                 <div class="news-comment">
                     <h4>COMMENTS <span>(03)</span></h4>
                     <div class="comment-box d-flex">

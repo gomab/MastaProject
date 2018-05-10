@@ -133,9 +133,10 @@ class UsersController extends Controller
     public function admin($id){
         $user = User::find($id);
         $user->admin = 1;
+        $user->role = 2;
         $user->save();
 
-        Toastr::success('Successfully User changed permission.', 'Brazza HipHop', ["positionClass" => "toast-top-right"]);
+        Toastr::success('Successfully User changed permission admin.', 'Brazza HipHop', ["positionClass" => "toast-top-right"]);
 
         return redirect()->back();
     }
@@ -147,9 +148,10 @@ class UsersController extends Controller
     public function not_admin($id){
         $user = User::find($id);
         $user->admin = 0;
+        $user->role = 1;
         $user->save();
 
-        Toastr::success('Successfully User changed permission.', 'Brazza HipHop', ["positionClass" => "toast-top-right"]);
+        Toastr::success('Successfully User changed permission not_admin.', 'Brazza HipHop', ["positionClass" => "toast-top-right"]);
 
         return redirect()->back();
     }

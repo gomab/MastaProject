@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-lg-10 col-md-12">
                     <ul class="list-unstyled list-inline">
-                        <li class="list-inline-item active"><a href="index.html">ACCUEIL</a></li>
+                        <li class="list-inline-item active"><a href="index.html">Acceuil</a></li>
 
                         @foreach($categories as $category)
                             <li class="list-inline-item"><a href="{{ route('category.single', $category->id) }}">{{ $category->name }}</a></li>

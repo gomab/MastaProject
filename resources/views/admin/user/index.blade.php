@@ -19,22 +19,14 @@
                     <!-- End Success Msg -->
 
                     <div class="card">
-                        <div class="card-header card-header-primary">
-                            <h4 class="card-title">User</h4>
-                            <a class="nav-link" href="{{ route('user.create') }}">
-                                <span class="btn btn-info btn-sm"><i class="material-icons">add_circle</i></span>
-                                <p>
-                                    <span class="d-lg-none d-md-block">Stats</span>
-                                </p>
-                            </a>
-
-                            <a class="nav-link" href="{{ route('profile.index') }}">
-                                <span class="btn btn-info btn-sm"><i class="material-icons">contacts</i></span>
-                                <p>
-                                    <span class="d-lg-none d-md-block">Stats</span>
-                                </p>
-                            </a>
+                        <div class="card-header card-header-danger">
+                            <h5 class="card-title">Utilisateurs</h5>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-secondary" title="Nouvel utilisateur"><a href="{{ route('user.create') }}"><i class="material-icons">add_circle</i></a></button>
+                                <button type="button" class="btn btn-secondary" title="Mon profil"><a href="{{ route('profile.index') }}"><i class="material-icons">contacts</i></a></button>
+                            </div>
                         </div>
+
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table id="table" class="table table-striped table-bordered" style="width:100%">

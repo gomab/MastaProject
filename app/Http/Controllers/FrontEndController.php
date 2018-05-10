@@ -46,8 +46,9 @@ class FrontEndController extends Controller
        // $category = Category::where('slug', $cat)->first();
         $post     = Post::where('slug', $slug)->first();
 
-        dd($post);
+        //dd($post);
 
+        //Pagination
         $next_id = Post::where('id', '>', $post->id)->min('id');
         $prev_id = Post::where('id', '<', $post->id)->max('id');
 
@@ -72,9 +73,12 @@ class FrontEndController extends Controller
     public function category($id){
         $category = Category::find($id);
 
-        return view('front.category')->with('category', $category)
+        return view('frontend.category')->with('category', $category)
             ->with('title', $category->name)
             //->with('settings', Setting::first())
+            ->with('title', Setting::first()->name)
+            ->with('logo', Setting::first()->logo)
+            ->with('fav', Setting::first()->favicon)
             ->with('categories', Category::take(5)->get());
     }
 
